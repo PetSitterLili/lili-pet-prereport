@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V32</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V33</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
@@ -11,7 +11,7 @@
         body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12px; }
         
         .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--primary); }
-        textarea { width: 100%; height: 80px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
+        textarea { width: 100%; height: 85px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
         button { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; }
 
         #dashboard { 
@@ -23,14 +23,12 @@
         .plan-title { grid-column: span 6; text-align: center; padding-bottom: 5px; }
         .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 24px; color: var(--deep); font-family: 'Playfair Display', serif; }
 
-        /* 頁首：WiFi 搬移放這 */
         .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; }
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
         .wifi-capsule { background: rgba(255,255,255,0.2); display: inline-block; padding: 3px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 1px solid rgba(255,255,255,0.3); }
         .media-badge { background: white; color: var(--deep); padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; border: 2.5px solid var(--deep); text-align: center; min-width: 140px; }
 
-        /* 佈局控制 */
         .col-2 { grid-column: span 2; }
         .col-3 { grid-column: span 3; }
         .col-6 { grid-column: span 6; }
@@ -44,7 +42,7 @@
 
         .footer { grid-column: span 6; margin-top: 15px; }
         .disclaimer-box { font-size: 10.5px; color: #777; background: #F9F9F9; padding: 12px; border-radius: 10px; border: 1px solid #EEE; line-height: 1.6; }
-        .brand-footer { display: flex; justify-content: center; gap: 60px; padding: 20px 0; border-bottom: 1px solid #EEE; margin-bottom: 10px; }
+        .brand-footer { display: flex; justify-content: center; gap: 50px; padding: 20px 0; border-bottom: 1px solid #EEE; margin-bottom: 10px; }
 
         @media print { 
             .input-box { display: none; } 
@@ -59,10 +57,10 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V32 ɞ</h3>
-    <textarea id="rawInput" placeholder="直接貼上全選複製的內容..."></textarea>
+    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V33 (V20 邏輯回歸) ɞ</h3>
+    <textarea id="rawInput" placeholder="直接全選貼上 Google 表單內容..."></textarea>
     <div style="margin-top: 10px;">
-        <button onclick="parseV32()">✨ 生成計畫書</button>
+        <button onclick="parseV33()">✨ 生成計畫書</button>
         <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
     </div>
 </div>
@@ -111,22 +109,22 @@
     <div class="footer">
         <div class="disclaimer-box">
             <b>⚖️ 服務安全與信任說明：</b><br>
-            [span_6](start_span)[span_7](start_span)家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證[span_6](end_span)[span_7](end_span)。致力於提供專業、透明且充滿愛的服務。
+            家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。
         </div>
         <div class="brand-footer">
             <img src="./ig.png" style="width: 65px; height: 65px; border-radius: 8px; margin-right: 20px;">
             <img src="./line.png" style="width: 65px; height: 65px; border-radius: 8px;">
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V32 | 定案精品版</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V33 | V20 邏輯版</div>
     </div>
 </div>
 
 <script>
-    function parseV32() {
+    function parseV33() {
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        [span_8](start_span)[span_9](start_span)[span_10](start_span)// V20 核心邏輯：物理順序切片[span_8](end_span)[span_9](end_span)[span_10](end_span)
+        // 【核心】完全還原 V20 物理切片邏輯
         const mapping = [
             { id: "out_client", start: "聯絡資訊", end: "服務地址" },
             { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
@@ -151,13 +149,12 @@
             const e = m.end === "END" ? txt.length : txt.indexOf(m.end);
             
             if (s !== -1) {
-                // 如果找到起點但沒找到終點（且不是最後一個），嘗試向後找
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
                 
-                // 物理靜音：刪除所有說明文字
+                // 物理靜音說明文字
                 const noises = [
-                    /請留下主要聯絡人.*/g, /請填寫名字.*/g, /交付方式.*/g, /此為加購項目.*/g,
-                    /緊急時備用.*/g, /食盆數量.*/g, /水盆數量.*/g, /砂盆數量.*/g,
+                    /請留下主要聯絡人.*/g, /請填寫名字.*/g, /此為加購項目.*/g, /緊急時備用.*/g,
+                    /食盆數量.*/g, /水盆數量.*/g, /砂盆數量.*/g, /交付方式.*/g,
                     /小建議[：:].*補.*厚度.*/g, /毛孩是否可接受.*/g, /需要留哪些燈.*/g,
                     /如有需要協助.*/g, /如服務時間足夠.*/g, /• 生活照顧.*/g, /• 預約日期.*/g,
                     /• 請問離家時間.*/g, /訊號差時.*/g, /請問是否同意.*/g, /包括但不限於.*/g,
@@ -165,7 +162,6 @@
                 ];
                 noises.forEach(n => { val = val.replace(n, ""); });
 
-                // 掃除標點
                 val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
                 results[m.id] = val;
                 
@@ -174,10 +170,10 @@
             }
         });
 
-        // 搬移 WiFi 到 Header
+        // 搬移 WiFi 資訊到頁首
         if (results['out_wifi']) document.getElementById('out_wifi_disp').innerText = results['out_wifi'];
 
-        [span_11](start_span)// 影像印章判定[span_11](end_span)
+        // 影像授權印章
         const badge = document.getElementById('media_badge_area');
         const mediaAns = results['out_media'] || "";
         if (mediaAns.includes("可以") || mediaAns.includes("願意") || mediaAns.includes("同意")) {
