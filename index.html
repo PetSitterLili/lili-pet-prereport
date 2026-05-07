@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業寵物照護計畫書 V26</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V28</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
         body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12.5px; }
         
-        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--primary); }
-        textarea { width: 100%; height: 80px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
-        button { background: var(--primary); color: white; border: none; padding: 10px 30px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 5px; font-size: 14px; }
+        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 20px; border-radius: 15px; text-align: center; border: 2px solid var(--primary); }
+        textarea { width: 100%; height: 100px; border: 1px solid #DDD; border-radius: 10px; padding: 12px; font-size: 13px; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 35px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 14px; }
 
         #dashboard { 
             max-width: 950px; margin: 0 auto; display: none; 
@@ -59,10 +59,10 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin-bottom: 8px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V26 (職人定稿版) ɞ</h3>
-    <textarea id="rawInput" placeholder="直接貼上表單回應文字..."></textarea>
+    <h3 style="color: var(--deep); margin-bottom: 10px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V28 (無腦一鍵複製版) ɞ</h3>
+    <textarea id="rawInput" placeholder="直接全選複製 Google 表單內容並貼上於此..."></textarea>
     <div style="margin-top: 10px;">
-        <button onclick="parseV26()">✨ 生成計畫書</button>
+        <button onclick="parseV28()">✨ 生成計畫書</button>
         <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
     </div>
 </div>
@@ -76,7 +76,7 @@
             <div class="info-text">
                 <b>委託家長：<span id="out_client">解析中</span></b><br>
                 <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中</span></span><br>
-                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi">未提供資訊</span></div>
+                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi">未提供</span></div>
             </div>
         </div>
         <div id="media_badge_area" class="media-badge"></div>
@@ -140,18 +140,18 @@
             <div class="qr-item"><img src="./ig.png" alt="IG"><div>Instagram</div></div>
             <div class="qr-item"><img src="./line.png" alt="Line"><div>Line OA</div></div>
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V26 | 職人定稿版</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V28 | 定案穩定版</div>
     </div>
 </div>
 
 <script>
-    function parseV26() {
+    function parseV28() {
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 1. 去除雜訊說明文字 (物理蒸發)
+        // 1. 強力除噪 (排除所有說明文字與 Google 系統垃圾)
         const noises = [
-            /\*/g, /電子郵件/g, /這份表單會要求你輸入電子郵件地址.*/g,
+            /\*/g, /電子郵件/g, /切換帳戶/g, /在我的回覆中記錄以下電子郵件地址.*/g,
             /請留下主要聯絡人稱呼與手機.*/g, /請填寫名字、品種或花色.*/g,
             /此為加購項目，包含點藥、擦藥、餵藥細節.*/g, /緊急時備用，請註明醫院名稱與醫師.*/g,
             /食盆數量位置、乾乾罐頭食量.*/g, /水盆數量位置、備品位置、寵物菜瓜布.*/g,
@@ -161,58 +161,57 @@
             /如服務時間足夠.*主要還是以毛孩照護狀況為主.*/gs, /請問是否同意服務過程中拍攝的毛小孩照片.*/g,
             /包括但不限於官方LINE、IG、threads.*/g, /• 生活照顧.*陪伴專案.*/g,
             /• 預約日期時間是.*/g, /• 請問離家時間.*/g, /訊號差時，可供即時回報使用，wifi名稱與密碼為？/g,
-            /好的,我已明白,我會自行將財物與貴重用品收藏好.*/gs
+            /請確認已加入ㄌㄌ官方帳號.*/gs, /系統會將你的回覆副本.*/gs, /請勿利用 Google 表單送出密碼.*/gs,
+            /Google 並未認可或建立這項內容.*/gs
         ];
         noises.forEach(n => { txt = txt.replace(n, ""); });
 
-        // 2. 標題清單與別名 (座標對位)
+        // 2. 定位標題 (絕對座標)
         const headers = [
-            { id: "out_client", match: ["聯絡資訊", "委託家長"] },
+            { id: "out_client", match: ["聯絡資訊"] },
             { id: "out_addr", match: ["服務地址"] },
             { id: "out_profile", match: ["毛孩詳細檔案"] },
-            { id: "out_key", match: ["鑰匙安全物流", "鑰匙委託與安全"] },
+            { id: "out_key", match: ["鑰匙安全物流"] },
             { id: "out_health", match: ["醫療健康照護"] },
             { id: "out_vet", match: ["指定救援醫院"] },
             { id: "out_food", match: ["飲食照顧細節"] },
             { id: "out_water", match: ["飲水照顧細節"] },
-            { id: "out_toilet", match: ["代謝監控清潔", "環境清潔與如廁觀察"] },
-            { id: "out_play", match: ["心理安撫互動", "心理安撫與互動"] },
-            { id: "out_elec", match: ["環境電器備註", "環境電器使用說明"] },
+            { id: "out_toilet", match: ["代謝監控清潔"] },
+            { id: "out_play", match: ["心理安撫互動"] },
+            { id: "out_elec", match: ["環境電器備註"] },
             { id: "out_custom", match: ["客製任務"] },
-            { id: "out_media_raw", match: ["影像授權意願", "照護素材"] },
-            { id: "out_booking", match: ["本次預約方案與日期時間", "本次預約與方案"] },
-            { id: "out_wifi", match: ["住家網路WiFi", "WiFi"] }
+            { id: "out_booking", match: ["本次預約方案與日期時間"] },
+            { id: "out_wifi", match: ["住家網路WiFi"] },
+            { id: "out_media_raw", match: ["影像授權意願"] }
         ];
 
-        // 尋找所有出現在文字中的標題位置
-        let foundPositions = [];
+        let foundPos = [];
         headers.forEach(h => {
             h.match.forEach(m => {
                 let pos = txt.indexOf(m);
-                if (pos !== -1) {
-                    foundPositions.push({ id: h.id, pos: pos, headerLength: m.length });
-                }
+                if (pos !== -1) foundPos.push({ id: h.id, pos: pos, len: m.length });
             });
         });
 
-        // 依照在文字中出現的先後順序排序
-        foundPositions.sort((a, b) => a.pos - b.pos);
+        // 依據出現順序排序
+        foundPos.sort((a, b) => a.pos - b.pos);
 
-        // 3. 區間解析 (核心修復：不再依賴 Hardcode 順序)
+        // 3. 執行解析
         let results = {};
-        for (let i = 0; i < foundPositions.length; i++) {
-            let start = foundPositions[i].pos + foundPositions[i].headerLength;
-            let end = (i + 1 < foundPositions.length) ? foundPositions[i + 1].pos : txt.length;
+        for (let i = 0; i < foundPos.length; i++) {
+            let start = foundPos[i].pos + foundPos[i].len;
+            let end = (i + 1 < foundPos.length) ? foundPos[i + 1].pos : txt.length;
             
             let val = txt.substring(start, end).trim();
+            // 去除多餘符號與鑰匙句號
             val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
-            results[foundPositions[i].id] = val;
+            results[foundPos[i].id] = val;
             
-            let target = document.getElementById(foundPositions[i].id);
-            if (target) target.innerText = val || "（家長未提供資訊）";
+            let el = document.getElementById(foundPos[i].id);
+            if (el) el.innerText = val || "（家長未填寫）";
         }
 
-        // 4. 影像授權印章邏輯
+        // 4. 右上角影像授權印章
         const badge = document.getElementById('media_badge_area');
         const mediaAns = results['out_media_raw'] || "";
         if (mediaAns.includes("可以") || mediaAns.includes("願意") || mediaAns.includes("同意")) {
