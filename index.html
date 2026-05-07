@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V33</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V33.1</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
@@ -57,8 +57,8 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V33 (V20 邏輯回歸) ɞ</h3>
-    <textarea id="rawInput" placeholder="直接全選貼上 Google 表單內容..."></textarea>
+    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V33.1 (標題美化版) ɞ</h3>
+    <textarea id="rawInput" placeholder="直接全選貼上 Google 表單回應內容..."></textarea>
     <div style="margin-top: 10px;">
         <button onclick="parseV33()">✨ 生成計畫書</button>
         <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
@@ -74,36 +74,36 @@
             <div>
                 <b>委託家長：<span id="out_client">解析中...</span></b><br>
                 <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中...</span></span><br>
-                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi_disp">未提供</span></div>
+                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi_disp">（請見下方 WiFi 資訊欄）</span></div>
             </div>
         </div>
         <div id="media_badge_area" class="media-badge"></div>
     </div>
 
     <div class="card col-2" style="background: #FAF9FC;">
-        <h3>🕒 本次預約方案與時段</h3>
+        <h3>🕒 預約時段與專業照護內容</h3>
         <div id="out_booking" class="content" style="font-weight:bold; color: var(--deep);"></div>
     </div>
     <div class="card col-2">
-        <h3>🛡️ 鑰匙安全物流</h3>
+        <h3>🛡️ 門禁安全與鑰匙保管細節</h3>
         <div id="out_key" class="content"></div>
     </div>
     <div class="card col-2">
-        <h3>🏥 醫療健康照護</h3>
+        <h3>🏥 生理健康監測與特殊照護</h3>
         <div id="out_health" class="content"></div>
         <div id="out_vet" style="margin-top:5px; border-top:1px dashed #EEE; padding-top:5px; font-size:10.5px;" class="content"></div>
     </div>
 
-    <div class="card col-6"><h3>🐱 毛孩詳細檔案</h3><div id="out_profile" class="content two-col-content"></div></div>
-    <div class="card col-6"><h3>🥣 營養與飲食照顧細節</h3><div id="out_food" class="content two-col-content"></div></div>
+    <div class="card col-6"><h3>🐱 毛孩行為特徵與心理檔案</h3><div id="out_profile" class="content two-col-content"></div></div>
+    <div class="card col-6"><h3>🥣 營養管理與精確餵食協議</h3><div id="out_food" class="content two-col-content"></div></div>
 
-    <div class="card col-3"><h3>💧 飲水照顧細節</h3><div id="out_water" class="content"></div></div>
-    <div class="card col-3"><h3>🧹 代謝監控清潔</h3><div id="out_toilet" class="content"></div></div>
+    <div class="card col-3"><h3>💧 飲水衛生與水源品質維護</h3><div id="out_water" class="content"></div></div>
+    <div class="card col-3"><h3>🧹 環境衛生與代謝行為觀察</h3><div id="out_toilet" class="content"></div></div>
 
-    <div class="card col-3"><h3>🌸 心理安撫互動</h3><div id="out_play" class="content"></div></div>
+    <div class="card col-3"><h3>🌸 心理安撫與高質量陪伴計畫</h3><div id="out_play" class="content"></div></div>
     <div class="stack-wrapper col-3">
-        <div class="card" style="border-top-color: #A8D8EA;"><h3>💡 環境電器備註</h3><div id="out_elec" class="content"></div></div>
-        <div class="card" style="border-top-color: #AA96DA;"><h3>🔧 客製任務</h3><div id="out_custom" class="content"></div></div>
+        <div class="card" style="border-top-color: #A8D8EA;"><h3>💡 住家環境控制與電器維護</h3><div id="out_elec" class="content"></div></div>
+        <div class="card" style="border-top-color: #AA96DA;"><h3>🔧 專屬委託客製服務小任務</h3><div id="out_custom" class="content"></div></div>
     </div>
 
     <div class="footer">
@@ -115,7 +115,7 @@
             <img src="./ig.png" style="width: 65px; height: 65px; border-radius: 8px; margin-right: 20px;">
             <img src="./line.png" style="width: 65px; height: 65px; border-radius: 8px;">
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V33 | V20 邏輯版</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V33.1 | 定案美化版</div>
     </div>
 </div>
 
@@ -124,7 +124,7 @@
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 【核心】完全還原 V20 物理切片邏輯
+        // 【核心】嚴格維持 V20 物理切片順序與題目名，確保解析成功
         const mapping = [
             { id: "out_client", start: "聯絡資訊", end: "服務地址" },
             { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
@@ -151,7 +151,7 @@
             if (s !== -1) {
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
                 
-                // 物理靜音說明文字
+                // 物理靜音說明文字，維持妳最信任的去噪邏輯
                 const noises = [
                     /請留下主要聯絡人.*/g, /請填寫名字.*/g, /此為加購項目.*/g, /緊急時備用.*/g,
                     /食盆數量.*/g, /水盆數量.*/g, /砂盆數量.*/g, /交付方式.*/g,
@@ -170,10 +170,10 @@
             }
         });
 
-        // 搬移 WiFi 資訊到頁首
+        // 搬移 WiFi 資訊到頁首 Header
         if (results['out_wifi']) document.getElementById('out_wifi_disp').innerText = results['out_wifi'];
 
-        // 影像授權印章
+        // 影像授權印章判定邏輯
         const badge = document.getElementById('media_badge_area');
         const mediaAns = results['out_media'] || "";
         if (mediaAns.includes("可以") || mediaAns.includes("願意") || mediaAns.includes("同意")) {
