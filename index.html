@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜毛孩專屬照護計畫書 V21.2</title>
+    <title>ㄌㄌ保姆｜毛孩專屬照護計畫書 V21.4</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
         body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12.5px; }
         
+        /* 介面控制 */
         .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 12px; border-radius: 10px; text-align: center; border: 1px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         textarea { width: 100%; height: 60px; border: 1px solid #DDD; border-radius: 8px; padding: 8px; font-size: 12px; }
-        button { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; margin-top: 5px; }
+        button { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; }
 
+        /* 核心佈局：6 欄位系統 */
         #dashboard { 
             max-width: 950px; 
             margin: 0 auto; 
@@ -22,18 +24,17 @@
             gap: 10px; 
         }
         
-        .plan-title { grid-column: span 6; text-align: center; padding: 10px 0 5px 0; }
+        .plan-title { grid-column: span 6; text-align: center; padding: 10px 0; }
         .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 26px; color: var(--deep); font-family: 'Playfair Display', serif; }
-        .plan-title p { margin: 2px 0 0 0; opacity: 0.6; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
 
-        .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; }
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 65px; height: 65px; object-fit: contain; }
-        .info-text { line-height: 1.4; }
         .info-text b { font-size: 15px; }
-        .wifi-capsule { background: rgba(255,255,255,0.2); display: inline-block; padding: 3px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 1px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--deep); padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 2.5px solid var(--deep); text-align: center; min-width: 140px; line-height: 1.2; display: none; }
+        .wifi-capsule { background: rgba(255,255,255,0.2); display: inline-block; padding: 3px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; }
+        .media-badge { background: white; color: var(--deep); padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; border: 2.5px solid var(--deep); text-align: center; min-width: 140px; }
 
+        /* 柵格控制 */
         .col-2 { grid-column: span 2; }
         .col-3 { grid-column: span 3; }
         .col-6 { grid-column: span 6; }
@@ -42,6 +43,7 @@
         .card h3 { color: var(--deep); margin: 0 0 6px 0; border-bottom: 1px solid #F5F5F5; padding-bottom: 4px; font-size: 13px; font-weight: bold; }
         .content { white-space: pre-wrap; font-size: 12px; line-height: 1.5; color: #444; }
         
+        /* 內部排版：雙欄內容 */
         .two-col-content { column-count: 2; column-gap: 20px; }
         .stack-wrapper { display: flex; flex-direction: column; gap: 10px; }
 
@@ -64,8 +66,8 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin:0 0 5px 0;">ʚ ㄌㄌ保姆｜計畫書生成器 V21.2 ɞ</h3>
-    <textarea id="rawInput" placeholder="直接貼上 Google 表單內容..."></textarea>
+    <h3 style="color: var(--deep); margin:0 0 5px 0;">ʚ ㄌㄌ保姆｜計畫書生成器 V21.4 ɞ</h3>
+    <textarea id="rawInput" placeholder="直接貼上 Google 表單回應內容..."></textarea>
     <div style="margin-top: 10px;">
         <button onclick="parseV21()">✨ 生成計畫書</button>
         <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
@@ -75,7 +77,6 @@
 <div id="dashboard">
     <div class="plan-title">
         <h1>ʚ 毛孩專屬照護計畫書 ɞ</h1>
-        <p>Your Pet's Personalized Care Plan</p>
     </div>
 
     <div class="info-header">
@@ -83,11 +84,11 @@
             <img src="cat_orange.png" alt="Lili">
             <div class="info-text">
                 <b>委託家長：<span id="out_client">解析中</span></b><br>
-                <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中...</span></span><br>
+                <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中</span></span><br>
                 <div class="wifi-capsule">📶 WiFi：<span id="out_wifi">未提供</span></div>
             </div>
         </div>
-        <div id="media_badge_area" class="media-badge"></div>
+        <div id="media_badge_area" class="media-badge">影像授權解析中</div>
     </div>
 
     <div class="card col-2" style="background: #FAF9FC; border-color: var(--deep);">
@@ -142,13 +143,13 @@
     <div class="footer">
         <div class="disclaimer-box">
             <b>⚖️ 服務安全與信任說明：</b><br>
-            家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。
+            家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。
         </div>
         <div class="brand-footer">
             <div class="qr-item"><img src="ig.png" alt="IG"><div>Instagram</div></div>
             <div class="qr-item"><img src="line.png" alt="Line"><div>Line OA</div></div>
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V21.2</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V21.4</div>
     </div>
 </div>
 
@@ -157,69 +158,80 @@
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 除噪邏輯
-        const noiseStrings = [
-            /\*/g, /電子郵件/g, /這份表單會要求你輸入電子郵件地址.*/g,
-            /請留下主要聯絡人稱呼與手機.*/g, /請填寫名字、品種或花色.*/g,
+        // 1. 先將題目中的「*」與「Email」等表單垃圾移除
+        txt = txt.replace(/\*/g, "").replace(/電子郵件/g, "");
+
+        // 2. 物理蒸發：說明文字去噪 (根據妳提供的清單)
+        const noiseList = [
+            /請留下主要聯絡人稱呼與手機.*/g,
+            /請填寫名字、品種或花色.*/g,
             /此為加購項目，包含點藥、擦藥、餵藥細節.*/g,
             /緊急時備用，請註明醫院名稱與醫師.*/g,
-            /食盆數量位置、乾乾罐頭食量.*/g, /水盆數量位置、備品位置.*/g,
-            /砂盆數量位置、備品位置、日常如廁頻率/g, 
+            /食盆數量位置、乾乾罐頭食量.*/g,
+            /水盆數量位置、備品位置、寵物菜瓜布.*/g,
+            /砂盆數量位置、備品位置、日常如廁頻率/g,
             /小建議[：:].*補.*厚度.*/g,
-            /此為加購項目\n\n毛孩是否可接受保姆慢步調陪玩.*/g,
-            /交付方式、歸還處，若為密碼鎖請留操作步驟/g, 
+            /毛孩是否可接受保姆慢步調陪玩.*/g,
+            /交付方式、歸還處，若為密碼鎖請留操作步驟/g,
             /需要留哪些燈？天氣熱是否開冷氣？需定時嗎？/g,
-            /如有需要協助除濕機倒水、植栽澆水或其他小任務.*/g,
+            /如有需要協助除濕機倒水.*舉手之勞.*/gs,
+            /如服務時間足夠.*主要還是以毛孩照護狀況為主.*/gs,
             /請問是否同意服務過程中拍攝的毛小孩照片.*/g,
-            /• 生活照顧.*/g, /• 預約日期時間是.*/g, /• 請問離家時間.*/g,
+            /包括但不限於官方LINE、IG、threads.*/g,
+            /• 生活照顧.*陪伴專案.*/g,
+            /• 預約日期時間是.*/g,
+            /• 請問離家時間.*/g,
             /訊號差時，可供即時回報使用，wifi名稱與密碼為？/g,
-            /好的,我已明白,我會自行將財物與貴重用品收藏好.*/g
+            /好的,我已明白,我會自行將財物與貴重用品收藏好.*/gs
         ];
-        noiseStrings.forEach(reg => { txt = txt.replace(reg, ""); });
+        noiseList.forEach(reg => { txt = txt.replace(reg, ""); });
 
-        [span_6](start_span)// 對齊 PDF 中的正確標題[span_6](end_span)
+        // 3. 精確座標對齊 (完全比照妳給的乾淨清單)
         const mapping = [
-            { id: "out_client", start: "委託家長", end: "服務地址" },
-            { id: "out_addr", start: "服務地址", end: "WiFi" },
-            { id: "out_wifi", start: "WiFi", end: "照護素材" },
-            { id: "out_media_raw", start: "照護素材", end: "本次預約與方案" },
-            { id: "out_booking", start: "本次預約與方案", end: "鑰匙委託與安全" },
-            { id: "out_key", start: "鑰匙委託與安全", end: "醫療健康照護" },
-            { id: "out_health", start: "醫療健康照護", end: "毛孩詳細檔案" },
-            { id: "out_profile", start: "毛孩詳細檔案", end: "營養與飲食照顧細節" },
-            { id: "out_food", start: "營養與飲食照顧細節", end: "飲水衛生細節" },
-            { id: "out_water", start: "飲水衛生細節", end: "環境清潔與如廁觀察" },
-            { id: "out_toilet", start: "環境清潔與如廁觀察", end: "心理安撫與互動" },
-            { id: "out_play", start: "心理安撫與互動", end: "環境電器使用說明" },
-            { id: "out_elec", start: "環境電器使用說明", end: "委託客製小任務" },
-            { id: "out_custom", start: "委託客製小任務", end: "END" }
+            { id: "out_client", start: "聯絡資訊", end: "服務地址" },
+            { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
+            { id: "out_profile", start: "毛孩詳細檔案", end: "醫療健康照護" },
+            { id: "out_health", start: "醫療健康照護", end: "指定救援醫院" },
+            { id: "out_vet", start: "指定救援醫院", end: "飲食照顧細節" },
+            { id: "out_food", start: "飲食照顧細節", end: "飲水照顧細節" },
+            { id: "out_water", start: "飲水照顧細節", end: "代謝監控清潔" },
+            { id: "out_toilet", start: "代謝監控清潔", end: "心理安撫互動" },
+            { id: "out_play", start: "心理安撫互動", end: "鑰匙安全物流" },
+            { id: "out_key", start: "鑰匙安全物流", end: "環境電器備註" },
+            { id: "out_elec", start: "環境電器備註", end: "客製任務" },
+            { id: "out_custom", start: "客製任務", end: "影像授權意願" },
+            { id: "out_media_raw", start: "影像授權意願", end: "本次預約方案與日期時間" },
+            { id: "out_booking", start: "本次預約方案與日期時間", end: "住家網路WiFi" },
+            { id: "out_wifi", start: "住家網路WiFi", end: "END" }
         ];
 
         let results = {};
         mapping.forEach(m => {
             const s = txt.indexOf(m.start);
-            let e = (m.end === "END") ? txt.length : txt.indexOf(m.end);
+            const e = (m.end === "END") ? txt.length : txt.indexOf(m.end);
             
             if (s !== -1) {
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
-                [span_7](start_span)// 清除開頭結尾的殘留標點[span_7](end_span)
+                // 掃除開頭符號與鑰匙末端多出的句號
                 val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
                 results[m.id] = val;
                 if (document.getElementById(m.id)) {
-                    document.getElementById(m.id).innerText = val || "（無資料）";
+                    document.getElementById(m.id).innerText = val || "（家長未填寫）";
                 }
             }
         });
 
-        [span_8](start_span)// 影像授權印章邏輯[span_8](end_span)
+        // 4. 影像授權印章邏輯 (判定「可以」或「不願意」)
         const badge = document.getElementById('media_badge_area');
         const mediaAnswer = results['out_media_raw'] || "";
-        if (mediaAnswer.includes("願意") || mediaAnswer.includes("同意") || mediaAnswer.includes("可以")) {
+        if (mediaAnswer.includes("可以") || mediaAnswer.includes("願意") || mediaAnswer.includes("同意")) {
             badge.innerHTML = "📷 我願意分享<br>毛孩照片/錄影";
             badge.style.borderColor = "#7B6896"; badge.style.color = "#7B6896"; badge.style.display = "block";
-        } else {
+        } else if (mediaAnswer.includes("不")) {
             badge.innerHTML = "🔒 照護素材<br>不對外公開";
             badge.style.borderColor = "#999"; badge.style.color = "#666"; badge.style.display = "block";
+        } else {
+            badge.style.display = "none";
         }
 
         document.getElementById('dashboard').style.display = 'grid';
