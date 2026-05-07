@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ㄌㄌ保姆｜專業照護計畫書 V34.1</title>
+    
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#9B89B3">
     <link rel="apple-touch-icon" href="20260508_045228_0000.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ㄌㄌ計畫書">
+    
+    <meta name="robots" content="noindex, nofollow">
+    
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         :root { 
             --morandi-purple: #9B89B3; 
@@ -42,11 +50,11 @@
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
         .wifi-capsule { background: rgba(255,255,255,0.15); display: inline-block; padding: 4px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 0.5px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 2.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
+        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 1.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
 
         .col-2 { grid-column: span 2; } .col-3 { grid-column: span 3; } .col-6 { grid-column: span 6; }
 
-        /* 卡片精品化：移除奶白底色，改用純白 */
+        /* 卡片精品化：純白背景與褐金細線 */
         .card { background: #FFFFFF; padding: 15px; border-radius: 8px; border: 0.8px solid var(--brown-gold); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); }
         
         .card h3 { 
@@ -212,14 +220,14 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
-    <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Lili App 啟動成功！'))
-        .catch(err => console.log('啟動失敗', err));
-    });
-  }
-    </script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Lili App 啟動成功！'))
+                .catch(err => console.log('啟動失敗', err));
+        });
+    }
+</script>
 </body>
 </html>
