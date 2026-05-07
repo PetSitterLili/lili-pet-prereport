@@ -3,52 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V33.1</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V33.3</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
-        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
-        body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12px; }
+        /* 精品色彩變數定義 */
+        :root { 
+            --morandi-purple: #9B89B3; /* 莫蘭迪紫 */
+            --morandi-deep: #7B6896;   /* 深莫蘭迪紫 */
+            --brown-gold: #A68F68;     /* 褐金色 */
+            --milky-white: #FCFAF2;    /* 奶白色 */
+            --text-main: #4A4540;      /* 深木炭褐 */
+        }
         
-        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--primary); }
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: #F7F5F0; margin: 0; padding: 10px; color: var(--text-main); font-size: 12px; }
+        
+        /* 輸入介面 */
+        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid var(--morandi-purple); }
         textarea { width: 100%; height: 85px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
-        button { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        button { background: var(--morandi-deep); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; transition: 0.3s; }
 
+        /* 核心佈局 */
         #dashboard { 
             max-width: 950px; margin: 0 auto; display: none; 
             grid-template-columns: repeat(6, 1fr); gap: 10px; 
             background: white; padding: 25px; border-radius: 20px;
+            border: 1px solid #EAEAEA;
         }
         
         .plan-title { grid-column: span 6; text-align: center; padding-bottom: 5px; }
-        .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 24px; color: var(--deep); font-family: 'Playfair Display', serif; }
+        .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 24px; color: var(--morandi-deep); font-family: 'Playfair Display', serif; }
 
-        .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .info-header { grid-column: span 6; background: var(--morandi-deep); color: white; padding: 20px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--brown-gold); }
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
-        .wifi-capsule { background: rgba(255,255,255,0.2); display: inline-block; padding: 3px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 1px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--deep); padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; border: 2.5px solid var(--deep); text-align: center; min-width: 140px; }
+        .wifi-capsule { background: rgba(255,255,255,0.15); display: inline-block; padding: 4px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 0.5px solid rgba(255,255,255,0.3); }
+        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 1.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
 
-        .col-2 { grid-column: span 2; }
-        .col-3 { grid-column: span 3; }
-        .col-6 { grid-column: span 6; }
+        .col-2 { grid-column: span 2; } .col-3 { grid-column: span 3; } .col-6 { grid-column: span 6; }
 
-        .card { background: white; padding: 12px; border-radius: 10px; border-top: 4px solid var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
-        .card h3 { color: var(--deep); margin: 0 0 6px 0; border-bottom: 1px solid #F5F5F5; padding-bottom: 4px; font-size: 13px; font-weight: bold; }
-        .content { white-space: pre-wrap; font-size: 11.5px; line-height: 1.5; color: #444; }
+        /* 卡片精品化：褐金細線與奶白底色 */
+        .card { background: var(--milky-white); padding: 15px; border-radius: 8px; border: 0.8px solid var(--brown-gold); box-shadow: 0 4px 15px rgba(166, 143, 104, 0.05); }
         
+        /* 小標題美化：低飽和漸層莫蘭迪紫 */
+        .card h3 { 
+            background: linear-gradient(90deg, #B5A8C5 0%, #DED9E5 100%); 
+            color: white;
+            margin: -15px -15px 10px -15px; 
+            padding: 8px 15px; 
+            border-radius: 8px 8px 0 0;
+            font-size: 12.5px; 
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .content { white-space: pre-wrap; font-size: 11.5px; line-height: 1.6; color: var(--text-main); }
         .two-col-content { column-count: 2; column-gap: 20px; }
         .stack-wrapper { display: flex; flex-direction: column; gap: 10px; }
 
-        .footer { grid-column: span 6; margin-top: 15px; }
-        .disclaimer-box { font-size: 10.5px; color: #777; background: #F9F9F9; padding: 12px; border-radius: 10px; border: 1px solid #EEE; line-height: 1.6; }
-        .brand-footer { display: flex; justify-content: center; gap: 50px; padding: 20px 0; border-bottom: 1px solid #EEE; margin-bottom: 10px; }
+        .footer { grid-column: span 6; margin-top: 20px; border-top: 0.5px solid var(--brown-gold); padding-top: 15px; }
+        .disclaimer-box { font-size: 10.5px; color: #777; background: #FDFBFA; padding: 12px; border-radius: 10px; border: 0.5px solid #EEE; line-height: 1.7; }
+        .brand-footer { display: flex; justify-content: center; gap: 50px; padding: 15px 0; }
 
         @media print { 
             .input-box { display: none; } 
-            #dashboard { display: grid !important; } 
+            #dashboard { display: grid !important; border: none; } 
             .card { break-inside: avoid; }
-            .footer { break-inside: avoid; margin-top: auto; padding-top: 10px; }
             body { padding: 0; background: white; }
             @page { margin: 8mm; size: A4; }
         }
@@ -57,8 +77,8 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V33.1 (標題美化版) ɞ</h3>
-    <textarea id="rawInput" placeholder="直接全選貼上 Google 表單回應內容..."></textarea>
+    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書 V33.3 (精品定案版) ɞ</h3>
+    <textarea id="rawInput" placeholder="全選貼上 Google 表單回應內容..."></textarea>
     <div style="margin-top: 10px;">
         <button onclick="parseV33()">✨ 生成計畫書</button>
         <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
@@ -72,50 +92,50 @@
         <div class="left-part">
             <img src="./cat_orange.png" alt="Lili">
             <div>
-                <b>毛爸媽聯絡方式：<span id="out_client">解析中...</span></b><br>
-                <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中...</span></span><br>
-                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi_disp">（請見下方 WiFi 資訊欄）</span></div>
+                <b>家長的稱呼：<span id="out_client">解析中...</span></b><br>
+                <span style="font-size: 12px; opacity: 0.9;">毛孩溫馨的家：<span id="out_addr">解析中...</span></span><br>
+                <div class="wifi-capsule">📶 回報不中斷 (WiFi)：<span id="out_wifi_disp">未提供</span></div>
             </div>
         </div>
         <div id="media_badge_area" class="media-badge"></div>
     </div>
 
-    <div class="card col-2" style="background: #FAF9FC;">
-        <h3>🕒 預約時段與方案</h3>
-        <div id="out_booking" class="content" style="font-weight:bold; color: var(--deep);"></div>
+    <div class="card col-2" style="background: #FFF;">
+        <h3>🕒 陪伴毛孩的時間與細節</h3>
+        <div id="out_booking" class="content" style="font-weight:bold; color: var(--morandi-deep);"></div>
     </div>
     <div class="card col-2">
-        <h3>🛡️ 門禁安全與鑰匙保管</h3>
+        <h3>🛡️ 回家的方式與門鎖安全</h3>
         <div id="out_key" class="content"></div>
     </div>
     <div class="card col-2">
-        <h3>🏥 生理健康監測與照護細節</h3>
+        <h3>🏥 身體小狀況與特別照顧</h3>
         <div id="out_health" class="content"></div>
-        <div id="out_vet" style="margin-top:5px; border-top:1px dashed #EEE; padding-top:5px; font-size:10.5px;" class="content"></div>
+        <div id="out_vet" style="margin-top:5px; border-top:1px dashed #DDD; padding-top:5px; font-size:10.5px;" class="content"></div>
     </div>
 
-    <div class="card col-6"><h3>🐱 毛孩小檔案</h3><div id="out_profile" class="content two-col-content"></div></div>
-    <div class="card col-6"><h3>🥣 日常飲食習慣與喜好</h3><div id="out_food" class="content two-col-content"></div></div>
+    <div class="card col-6"><h3>🐱 毛孩的小個性與相處默契</h3><div id="out_profile" class="content two-col-content"></div></div>
+    <div class="card col-6"><h3>🥣 每一餐的份量與愛吃的口味</h3><div id="out_food" class="content two-col-content"></div></div>
 
-    <div class="card col-3"><h3>💧 日常飲水習慣與清潔</h3><div id="out_water" class="content"></div></div>
-    <div class="card col-3"><h3>🧹 環境衛生與代謝觀察</h3><div id="out_toilet" class="content"></div></div>
+    <div class="card col-3"><h3>💧 隨時隨地乾淨清爽的飲水</h3><div id="out_water" class="content"></div></div>
+    <div class="card col-3"><h3>🧹 如廁環境清潔與代謝觀察</h3><div id="out_toilet" class="content"></div></div>
 
-    <div class="card col-3"><h3>🌸 喜好的互動媒介與方式</h3><div id="out_play" class="content"></div></div>
+    <div class="card col-3"><h3>🌸 放鬆心情的玩耍與陪伴</h3><div id="out_play" class="content"></div></div>
     <div class="stack-wrapper col-3">
-        <div class="card" style="border-top-color: #A8D8EA;"><h3>💡 環境與電器確認</h3><div id="out_elec" class="content"></div></div>
-        <div class="card" style="border-top-color: #AA96DA;"><h3>🔧 客製委託小任務</h3><div id="out_custom" class="content"></div></div>
+        <div class="card" style="background: #FFF;"><h3>💡 舒適空間控制與電器使用</h3><div id="out_elec" class="content"></div></div>
+        <div class="card" style="background: #FFF;"><h3>🔧 爸爸媽媽交代的貼心任務</h3><div id="out_custom" class="content"></div></div>
     </div>
 
     <div class="footer">
         <div class="disclaimer-box">
-            <b>⚖️ 服務安全與信任說明：</b><br>
-            家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。
+            <b>⚖️ 給家長的安心承諾：</b><br>
+            家中貴重財物建議您可以收好或鎖在房間內。<b>為了讓您在外更安心，非常歡迎您安裝監視器，且不需要特別告知我安裝的位置</b>。若服務後有任何想討論的地方，請在 3 日內與我聯絡。<b>保姆本名：陳苡彤</b>，我已準備好良民證供您查驗，希望能給毛孩最溫柔、最專業的守護。
         </div>
         <div class="brand-footer">
-            <img src="./ig.png" style="width: 65px; height: 65px; border-radius: 8px; margin-right: 20px;">
-            <img src="./line.png" style="width: 65px; height: 65px; border-radius: 8px;">
+            <img src="./ig.png" style="width: 65px; height: 65px; border-radius: 8px; margin-right: 20px; border: 0.5px solid var(--brown-gold);">
+            <img src="./line.png" style="width: 65px; height: 65px; border-radius: 8px; border: 0.5px solid var(--brown-gold);">
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V33.1 | 定案美化版</div>
+        <div style="text-align:center; font-size:10px; color:#AAA;">Lili Pet Sitter Case Report V33.3 | 精品美學定案版</div>
     </div>
 </div>
 
@@ -124,7 +144,7 @@
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 【核心】嚴格維持 V20 物理切片順序與題目名，確保解析成功
+        // 【核心】嚴格鎖定 V33/V20 最穩定的解析座標，絕對不更動邏輯
         const mapping = [
             { id: "out_client", start: "聯絡資訊", end: "服務地址" },
             { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
@@ -147,11 +167,8 @@
         mapping.forEach(m => {
             const s = txt.indexOf(m.start);
             const e = m.end === "END" ? txt.length : txt.indexOf(m.end);
-            
             if (s !== -1) {
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
-                
-                // 物理靜音說明文字，維持妳最信任的去噪邏輯
                 const noises = [
                     /請留下主要聯絡人.*/g, /請填寫名字.*/g, /此為加購項目.*/g, /緊急時備用.*/g,
                     /食盆數量.*/g, /水盆數量.*/g, /砂盆數量.*/g, /交付方式.*/g,
@@ -161,27 +178,24 @@
                     /\*/g, /電子郵件/g, /切換帳戶/g, /在我的回覆中記錄以下電子郵件地址.*/g
                 ];
                 noises.forEach(n => { val = val.replace(n, ""); });
-
                 val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
                 results[m.id] = val;
-                
                 const el = document.getElementById(m.id);
-                if (el) el.innerText = val || "（家長未填寫）";
+                if (el) el.innerText = val || "（家長還沒交代唷）";
             }
         });
 
-        // 搬移 WiFi 資訊到頁首 Header
+        // 搬移 WiFi 資訊到 Header 核對地址位置
         if (results['out_wifi']) document.getElementById('out_wifi_disp').innerText = results['out_wifi'];
 
-        // 影像授權印章判定邏輯
         const badge = document.getElementById('media_badge_area');
         const mediaAns = results['out_media'] || "";
         if (mediaAns.includes("可以") || mediaAns.includes("願意") || mediaAns.includes("同意")) {
             badge.innerHTML = "📷 我願意分享<br>毛孩照片/錄影";
-            badge.style.borderColor = "#7B6896"; badge.style.color = "#7B6896"; badge.style.display = "block";
+            badge.style.display = "block";
         } else if (mediaAns.includes("不")) {
             badge.innerHTML = "🔒 照護素材<br>不對外公開";
-            badge.style.borderColor = "#999"; badge.style.color = "#666"; badge.style.display = "block";
+            badge.style.display = "block";
         } else {
             badge.style.display = "none";
         }
