@@ -3,54 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V29</title>
+    <title>ㄌㄌ保姆｜專業寵物照護計畫書 V30</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
-        body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12.5px; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12px; }
         
-        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        textarea { width: 100%; height: 85px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
-        button { background: var(--primary); color: white; border: none; padding: 10px 30px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 8px; font-size: 14px; }
+        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--primary); }
+        textarea { width: 100%; height: 80px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; }
 
         #dashboard { 
             max-width: 950px; margin: 0 auto; display: none; 
-            grid-template-columns: repeat(6, 1fr); gap: 12px; 
+            grid-template-columns: repeat(6, 1fr); gap: 10px; 
             background: white; padding: 25px; border-radius: 20px;
         }
         
-        .plan-title { grid-column: span 6; text-align: center; padding-bottom: 10px; }
-        .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 26px; color: var(--deep); font-family: 'Playfair Display', serif; }
+        .plan-title { grid-column: span 6; text-align: center; padding-bottom: 5px; }
+        .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 24px; color: var(--deep); font-family: 'Playfair Display', serif; }
 
-        .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 20px 30px; border-radius: 18px; display: flex; align-items: center; justify-content: space-between; }
+        .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; }
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
-        .info-header img { width: 75px; height: 75px; object-fit: contain; }
-        .info-text b { font-size: 16px; }
-        .wifi-capsule { background: rgba(255,255,255,0.25); display: inline-block; padding: 4px 15px; border-radius: 20px; margin-top: 6px; font-size: 11px; border: 1px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--deep); padding: 10px 15px; border-radius: 12px; font-size: 12px; font-weight: bold; border: 2.5px solid var(--deep); text-align: center; min-width: 150px; line-height: 1.3; }
+        .info-header img { width: 70px; height: 70px; object-fit: contain; }
+        .wifi-capsule { background: rgba(255,255,255,0.2); display: inline-block; padding: 3px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 1px solid rgba(255,255,255,0.3); }
+        .media-badge { background: white; color: var(--deep); padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; border: 2.5px solid var(--deep); text-align: center; min-width: 140px; }
 
         .col-2 { grid-column: span 2; }
         .col-3 { grid-column: span 3; }
         .col-6 { grid-column: span 6; }
 
-        .card { background: white; padding: 15px; border-radius: 12px; border-top: 5px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .card h3 { color: var(--deep); margin: 0 0 8px 0; border-bottom: 1px solid #F5F5F5; padding-bottom: 5px; font-size: 13.5px; font-weight: 700; }
-        .content { white-space: pre-wrap; font-size: 12.5px; line-height: 1.6; color: #444; }
-        .two-col-content { column-count: 2; column-gap: 25px; }
-        .stack-wrapper { display: flex; flex-direction: column; gap: 12px; }
+        .card { background: white; padding: 12px; border-radius: 10px; border-top: 4px solid var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+        .card h3 { color: var(--deep); margin: 0 0 6px 0; border-bottom: 1px solid #F5F5F5; padding-bottom: 4px; font-size: 13px; font-weight: bold; }
+        .content { white-space: pre-wrap; font-size: 11.5px; line-height: 1.5; color: #444; }
+        
+        .two-col-content { column-count: 2; column-gap: 20px; }
+        .stack-wrapper { display: flex; flex-direction: column; gap: 10px; }
 
-        .footer { grid-column: span 6; margin-top: 20px; }
-        .disclaimer-box { font-size: 11px; color: #777; background: #F9F9F9; padding: 15px; border-radius: 12px; border: 1px solid #EEE; line-height: 1.7; }
-        .brand-footer { display: flex; justify-content: center; gap: 60px; padding: 25px 0; border-bottom: 1px solid #EEE; margin-bottom: 10px; }
-        .qr-item { text-align: center; font-size: 11px; color: var(--primary); }
-        .qr-item img { width: 75px; height: 75px; border-radius: 8px; border: 1px solid #EEE; margin-bottom: 8px; }
+        .footer { grid-column: span 6; margin-top: 15px; }
+        .disclaimer-box { font-size: 10.5px; color: #777; background: #F9F9F9; padding: 12px; border-radius: 10px; border: 1px solid #EEE; line-height: 1.6; }
+        .brand-footer { display: flex; justify-content: center; gap: 50px; padding: 20px 0; border-bottom: 1px solid #EEE; margin-bottom: 10px; }
+        .qr-item { text-align: center; font-size: 10px; color: var(--primary); }
+        .qr-item img { width: 65px; height: 65px; border-radius: 8px; border: 1px solid #EEE; margin-bottom: 5px; }
 
         @media print { 
             .input-box { display: none; } 
             #dashboard { display: grid !important; } 
             .card { break-inside: avoid; }
-            .footer { break-inside: avoid; margin-top: auto; padding-top: 15px; }
+            .footer { break-inside: avoid; margin-top: auto; padding-top: 10px; }
             body { padding: 0; background: white; }
             @page { margin: 8mm; size: A4; }
         }
@@ -59,12 +59,9 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin-bottom: 8px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V29 ɞ</h3>
-    <textarea id="rawInput" placeholder="直接全選複製 Google 表單內容並貼上於此..."></textarea>
-    <div style="margin-top: 10px;">
-        <button onclick="parseV29()">✨ 生成精品計畫書</button>
-        <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
-    </div>
+    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V30 ɞ</h3>
+    <textarea id="rawInput" placeholder="全選貼上 Google 表單內容..."></textarea>
+    <button onclick="parseV30()">✨ 生成計畫書</button>
 </div>
 
 <div id="dashboard">
@@ -73,17 +70,17 @@
     <div class="info-header">
         <div class="left-part">
             <img src="./cat_orange.png" alt="Lili">
-            <div class="info-text">
+            <div>
                 <b>委託家長：<span id="out_client">解析中...</span></b><br>
                 <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中...</span></span><br>
-                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi">未提供資訊</span></div>
+                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi_disp">未提供</span></div>
             </div>
         </div>
         <div id="media_badge_area" class="media-badge"></div>
     </div>
 
-    <div class="card col-2" style="background: #FAF9FC; border-color: var(--deep);">
-        <h3>🕒 本次預約方案與日期時間</h3>
+    <div class="card col-2" style="background: #FAF9FC;">
+        <h3>🕒 本次預約方案與時段</h3>
         <div id="out_booking" class="content" style="font-weight:bold; color: var(--deep);"></div>
     </div>
     <div class="card col-2">
@@ -93,125 +90,92 @@
     <div class="card col-2">
         <h3>🏥 醫療健康照護</h3>
         <div id="out_health" class="content"></div>
-        <div id="out_vet" style="margin-top:5px; border-top:1px dashed #EEE; padding-top:5px; font-size:11px;" class="content"></div>
+        <div id="out_vet" style="margin-top:5px; border-top:1px dashed #EEE; padding-top:5px; font-size:10.5px;" class="content"></div>
     </div>
 
-    <div class="card col-6">
-        <h3>🐱 毛孩詳細檔案</h3>
-        <div id="out_profile" class="content two-col-content"></div>
-    </div>
+    <div class="card col-6"><h3>🐱 毛孩詳細檔案</h3><div id="out_profile" class="content two-col-content"></div></div>
+    <div class="card col-6"><h3>🥣 營養與飲食照顧細節</h3><div id="out_food" class="content two-col-content"></div></div>
 
-    <div class="card col-6">
-        <h3>🥣 營養與飲食照顧細節</h3>
-        <div id="out_food" class="content two-col-content"></div>
-    </div>
+    <div class="card col-3"><h3>💧 飲水照顧細節</h3><div id="out_water" class="content"></div></div>
+    <div class="card col-3"><h3>🧹 代謝監控清潔</h3><div id="out_toilet" class="content"></div></div>
 
-    <div class="card col-3">
-        <h3>💧 飲水照顧細節</h3>
-        <div id="out_water" class="content"></div>
-    </div>
-    <div class="card col-3">
-        <h3>🧹 代謝監控清潔</h3>
-        <div id="out_toilet" class="content"></div>
-        <div style="margin-top:5px; font-size:10px; color:var(--primary); font-style:italic;">✨ ㄌㄌ提醒：家長離家前可將貓砂補至充足厚度，增加毛孩舒適度唷！</div>
-    </div>
-
-    <div class="card col-3">
-        <h3>🌸 心理安撫互動</h3>
-        <div id="out_play" class="content"></div>
-    </div>
+    <div class="card col-3"><h3>🌸 心理安撫互動</h3><div id="out_play" class="content"></div></div>
     <div class="stack-wrapper col-3">
-        <div class="card" style="border-top: 4px solid #A8D8EA;">
-            <h3>💡 環境電器備註</h3>
-            <div id="out_elec" class="content"></div>
-        </div>
-        <div class="card" style="border-top: 4px solid #AA96DA;">
-            <h3>🔧 客製任務</h3>
-            <div id="out_custom" class="content"></div>
-        </div>
+        <div class="card" style="border-top-color: #A8D8EA;"><h3>💡 環境電器備註</h3><div id="out_elec" class="content"></div></div>
+        <div class="card" style="border-top-color: #AA96DA;"><h3>🔧 客製任務</h3><div id="out_custom" class="content"></div></div>
     </div>
 
     <div class="footer">
         <div class="disclaimer-box">
             <b>⚖️ 服務安全與信任說明：</b><br>
-            [span_5](start_span)家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。[span_5](end_span)
+            家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。
         </div>
         <div class="brand-footer">
             <div class="qr-item"><img src="./ig.png" alt="IG"><div>Instagram</div></div>
             <div class="qr-item"><img src="./line.png" alt="Line"><div>Line OA</div></div>
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V29 | 終極穩定版</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V30 | 定案精品版</div>
     </div>
 </div>
 
 <script>
-    function parseV29() {
+    function parseV30() {
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 1. 去噪 (物理蒸發說明文字)
-        const noises = [
-            /\*/g, /電子郵件/g, /切換帳戶/g, /在我的回覆中記錄以下電子郵件地址.*/g,
-            /請留下主要聯絡人稱呼與手機.*/g, /請填寫名字、品種或花色.*/g,
-            /此為加購項目，包含點藥、擦藥、餵藥細節.*/g, /緊急時備用，請註明醫院名稱與醫師.*/g,
-            /食盆數量位置、乾乾罐頭食量.*/g, /水盆數量位置、備品位置、寵物菜瓜布.*/g,
-            /砂盆數量位置、備品位置、日常如廁頻率/g, /小建議[：:].*補.*厚度.*/g,
-            /毛孩是否可接受保姆慢步調陪玩.*/g, /交付方式、歸還處，若為密碼鎖請留操作步驟/g,
-            /需要留哪些燈？天氣熱是否開冷氣？需定時嗎？/g, /如有需要協助除濕機倒水.*舉手之勞.*/g,
-            /如服務時間足夠.*主要還是以毛孩照護狀況為主.*/gs, /請問是否同意服務過程中拍攝的毛小孩照片.*/g,
-            /包括但不限於官方LINE、IG、threads.*/g, /• 生活照顧.*陪伴專案.*/g,
-            /• 預約日期時間是.*/g, /• 請問離家時間.*/g, /訊號差時，可供即時回報使用，wifi名稱與密碼為？/g,
-            /請確認已加入ㄌㄌ官方帳號.*/gs, /系統會將你的回覆副本.*/gs, /Google 並未認可或建立這項內容.*/gs
-        ];
-        noises.forEach(n => { txt = txt.replace(n, ""); });
-
-        // 2. 模糊座標清單 (自動適應帶有裝飾符號的標題)
-        const headers = [
-            { id: "out_client", match: ["聯絡資訊"] },
-            { id: "out_addr", match: ["服務地址"] },
-            { id: "out_profile", match: ["毛孩詳細檔案"] },
-            { id: "out_key", match: ["鑰匙安全物流", "鑰匙委託與安全"] },
-            { id: "out_health", match: ["醫療健康照護"] },
-            { id: "out_vet", match: ["指定救援醫院"] },
-            { id: "out_food", match: ["飲食照顧細節"] },
-            { id: "out_water", match: ["飲水照顧細節", "飲水衛生細節"] },
-            { id: "out_toilet", match: ["代謝監控清潔", "環境清潔與如廁觀察"] },
-            { id: "out_play", match: ["心理安撫互動", "心理安撫與互動"] },
-            { id: "out_elec", match: ["環境電器備註", "環境電器使用說明"] },
-            { id: "out_custom", match: ["客製任務"] },
-            { id: "out_booking", match: ["預約方案與日期時間", "預約與方案"] },
-            { id: "out_wifi", match: ["住家網路WiFi", "WiFi"] },
-            { id: "out_media_raw", match: ["影像授權意願"] }
+        // V20 核心邏輯：物理順序切片
+        const mapping = [
+            { id: "out_client", start: "聯絡資訊", end: "服務地址" },
+            { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
+            { id: "out_profile", start: "毛孩詳細檔案", end: "鑰匙安全物流" },
+            { id: "out_key", start: "鑰匙安全物流", end: "醫療健康照護" },
+            { id: "out_health", start: "醫療健康照護", end: "指定救援醫院" },
+            { id: "out_vet", start: "指定救援醫院", end: "飲食照顧細節" },
+            { id: "out_food", start: "飲食照顧細節", end: "飲水照顧細節" },
+            { id: "out_water", start: "飲水照顧細節", end: "代謝監控清潔" },
+            { id: "out_toilet", start: "代謝監控清潔", end: "心理安撫互動" },
+            { id: "out_play", start: "心理安撫互動", end: "環境電器備註" },
+            { id: "out_elec", start: "環境電器備註", end: "客製任務" },
+            { id: "out_custom", start: "客製任務", end: "本次預約方案與日期時間" },
+            { id: "out_booking", start: "本次預約方案與日期時間", end: "住家網路WiFi" },
+            { id: "out_wifi", start: "住家網路WiFi", end: "影像授權意願" },
+            { id: "out_media", start: "影像授權意願", end: "END" }
         ];
 
-        let foundPos = [];
-        headers.forEach(h => {
-            h.match.forEach(m => {
-                let pos = txt.indexOf(m);
-                if (pos !== -1) foundPos.push({ id: h.id, pos: pos, len: m.length });
-            });
+        let results = {};
+        mapping.forEach(m => {
+            const s = txt.indexOf(m.start);
+            const e = m.end === "END" ? txt.length : txt.indexOf(m.end);
+            if (s !== -1) {
+                let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
+                
+                // 物理除噪：靜音所有表單說明與指令文字
+                const noises = [
+                    /請留下主要聯絡人.*/g, /請填寫名字.*/g, /此為加購項目.*/g, /緊急時備用.*/g,
+                    /食盆數量.*/g, /水盆數量.*/g, /砂盆數量.*/g, /交付方式.*/g,
+                    /小建議[：:].*補.*厚度.*/g, /毛孩是否可接受.*/g, /需要留哪些燈.*/g,
+                    /如有需要協助.*/g, /如服務時間足夠.*/g, /• 生活照顧.*/g, /• 預約日期.*/g,
+                    /• 請問離家時間.*/g, /訊號差時.*/g, /請問是否同意.*/g, /包括但不限於.*/g,
+                    /\*/g, /電子郵件/g, /切換帳戶/g, /在我的回覆中記錄以下電子郵件地址.*/g
+                ];
+                noises.forEach(n => { val = val.replace(n, ""); });
+
+                // 掃除開頭符號與標點
+                val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
+                results[m.id] = val;
+                
+                // 填入對應區塊
+                const el = document.getElementById(m.id);
+                if (el) el.innerText = val || "（家長未填寫）";
+            }
         });
 
-        foundPos.sort((a, b) => a.pos - b.pos);
+        // 搬移 WiFi 到 Header
+        if (results['out_wifi']) document.getElementById('out_wifi_disp').innerText = results['out_wifi'];
 
-        // 3. 切片解析 (解決內容大搬家問題)
-        let results = {};
-        for (let i = 0; i < foundPos.length; i++) {
-            let start = foundPos[i].pos + foundPos[i].len;
-            let end = (i + 1 < foundPos.length) ? foundPos[i + 1].pos : txt.length;
-            
-            let val = txt.substring(start, end).trim();
-            // 掃除開頭冒號與結尾雜符
-            val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
-            results[foundPos[i].id] = val;
-            
-            let el = document.getElementById(foundPos[i].id);
-            if (el) el.innerText = val || "（未提供）";
-        }
-
-        // 4. 右上角精品印章 (偵測「可以」或「願意」)
+        // 影像印章邏輯
         const badge = document.getElementById('media_badge_area');
-        const mediaAns = results['out_media_raw'] || "";
+        const mediaAns = results['out_media'] || "";
         if (mediaAns.includes("可以") || mediaAns.includes("願意") || mediaAns.includes("同意")) {
             badge.innerHTML = "📷 我願意分享<br>毛孩照片/錄影";
             badge.style.borderColor = "#7B6896"; badge.style.color = "#7B6896"; badge.style.display = "block";
