@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ㄌㄌ保姆｜案場執行戰情報 V14 (GitHub 版)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #9B89B3; --deep: #7B6896; --bg: #F4F2F9; --text: #4A4453; }
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: #EEE; margin: 0; padding: 20px; }
+        .input-box { max-width: 900px; margin: 0 auto 20px; background: white; padding: 20px; border-radius: 15px; text-align: center; }
+        textarea { width: 100%; height: 80px; border: 1px solid #DDD; border-radius: 10px; padding: 10px; margin-bottom: 10px; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        #dashboard { max-width: 900px; margin: 0 auto; display: none; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .header { grid-column: span 2; background: var(--primary); color: white; padding: 25px; border-radius: 15px; text-align: center; position: relative; }
+        .header img { width: 60px; height: 60px; border-radius: 50%; position: absolute; left: 20px; top: 50%; transform: translateY(-50%); border: 2px solid white; }
+        .header h2 { margin: 0; letter-spacing: 5px; }
+        .wifi-tag { background: rgba(0,0,0,0.1); display: inline-block; padding: 5px 15px; border-radius: 20px; margin-top: 10px; font-size: 13px; font-weight: bold; }
+        .booking-highlight { grid-column: span 2; background: #FFF; border: 2.5px solid var(--primary); padding: 15px; border-radius: 12px; text-align: center; }
+        .card { background: white; padding: 15px; border-radius: 12px; border-top: 5px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card h3 { color: var(--primary); margin: 0 0 10px 0; border-bottom: 1px solid #EEE; padding-bottom: 5px; font-size: 16px; }
+        .content { white-space: pre-wrap; font-size: 14px; color: #333; line-height: 1.5; }
+        .full { grid-column: span 2; }
+        .footer { grid-column: span 2; background: #FFF; padding: 20px; border-radius: 12px; text-align: center; margin-top: 15px; border: 1px solid #EEE; }
+        .qr-group { display: flex; justify-content: center; gap: 30px; margin-top: 15px; }
+        .qr-item { text-align: center; font-size: 10px; color: var(--primary); }
+        .qr-item img { width: 80px; height: 80px; border: 1px solid #EEE; border-radius: 5px; margin-bottom: 5px; }
+        @media print { .input-box { display: none; } #dashboard { display: grid !important; } .card { break-inside: avoid; } }
+        @media (max-width: 600px) { #dashboard { grid-template-columns: 1fr; } .full, .header, .booking-highlight { grid-column: span 1; } }
+    </style>
+</head>
+<body>
+
+<div class="input-box">
+    <h3 style="color: var(--primary);">ʚ ㄌㄌ保姆｜案場解析助手 V14 (GitHub 版) ɞ</h3>
+    <textarea id="rawInput" placeholder="全選複製 Google 回條內容並貼上於此..."></textarea>
+    <button onclick="parseV14()">✨ 生成穩定版攻略本</button>
+    <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 / 存為 PDF</button>
+</div>
+
+<div id="dashboard">
+    <div class="header">
+        <img src="cat.png" alt="Lili">
+        <h2>案場執行攻略</h2>
+        <div id="out_addr" style="margin-top:8px; font-size: 14px;"></div>
+        <div class="wifi-tag">📶 WiFi：<span id="out_wifi">載入中</span></div>
+    </div>
+
+    <div class="booking-highlight">
+        <b style="color:var(--primary); font-size:12px; display:block; margin-bottom:5px;">預約方案與日期時間</b>
+        <div id="out_booking" class="content" style="font-weight:bold; font-size:16px;"></div>
+    </div>
+
+    <div class="card"><h3>🏥 醫療健康照護</h3><div id="out_health" class="content"></div><div id="out_vet" style="margin-top:8px; border-top:1px dashed #EEE; padding-top:5px;" class="content"></div></div>
+    <div class="card"><h3>🛡️ 鑰匙安全物流</h3><div id="out_key" class="content"></div></div>
+
+    <div class="card full"><h3>🥣 飲食照顧細節</h3><div id="out_food" class="content"></div></div>
+    <div class="card full"><h3>💧 飲水照顧細節</h3><div id="out_water" class="content"></div></div>
+
+    <div class="card">
+        <h3>🧹 代謝監控清潔</h3>
+        <div id="out_toilet" class="content"></div>
+        <div style="margin-top:10px; font-size:12px; color:var(--primary); font-style:italic; border-top:1px dashed #EEE; padding-top:5px;">✨ 小建議：貓砂請在離家前先幫貓咪補到足夠的厚度唷！</div>
+    </div>
+    <div class="card"><h3>🌸 心理安撫互動</h3><div id="out_play" class="content"></div></div>
+
+    <div class="card full"><h3>🐱 毛孩詳細檔案</h3><div id="out_profile" class="content" style="column-count: 2; column-gap: 20px;"></div></div>
+
+    <div class="card"><h3>💡 環境電器備註</h3><div id="out_elec" class="content"></div></div>
+    <div class="card"><h3>🔧 客製任務專區</h3><div id="out_custom" class="content"></div></div>
+
+    <div class="footer">
+        <div style="font-size: 11px; color: #777; text-align: left; background: #F9F8FD; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <b>⚖️ 免責聲明：</b>貴重財物請自行妥善保管。若有疑問請於服務後 3 日內提出。ㄌㄌ保姆持有良民證。
+        </div>
+        <div class="qr-group">
+            <div class="qr-item"><img src="ig.png" alt="IG"><div>Instagram</div></div>
+            <div class="qr-item"><img src="threads.png" alt="Threads"><div>Threads</div></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function parseV14() {
+        let txt = document.getElementById('rawInput').value;
+        if (!txt) return;
+
+        const banList = [
+            /\*/g, /電子郵件/g, /這份表單會要求你輸入電子郵件地址。變更設定/g,
+            /請留下主要聯絡人稱呼與手機.*/g, /請填寫名字、品種或花色.*/g,
+            /此為加購項目，包含點藥、擦藥、餵藥細節。ㄌㄌ無皮下注射服務 。/g,
+            /緊急時備用，請註明醫院名稱與醫師 。春節或是國定假日如有休診有無替代方案？/g,
+            /食盆數量位置、乾乾罐頭食量.*/g, /水盆數量位置、備品位置.*/g,
+            /砂盆數量位置、備品位置、日常如廁頻率/g, /小建議：貓砂請在離家前.*/g,
+            /此為加購項目.*有無喜好玩法/gs, /交付方式、歸還處，若為密碼鎖請留操作步驟 。/g,
+            /需要留哪些燈？天氣熱是否開冷氣？需定時嗎？/g, /如有需要協助除濕機倒水.*主要還是以毛孩照護狀況為主唷！/gs,
+            /影像授權意願.*影像授權意願/gs, /• 生活照顧.*利抓合適間隔時間到府/gs,
+            /訊號差時，可供即時回報使用，wifi名稱與密碼為？/g
+        ];
+        banList.forEach(p => { txt = txt.replace(p, ""); });
+
+        const mapping = [
+            { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
+            { id: "out_profile", start: "毛孩詳細檔案", end: "醫療健康照護" },
+            { id: "out_health", start: "醫療健康照護", end: "指定救援醫院" },
+            { id: "out_vet", start: "指定救援醫院", end: "飲食照顧細節" },
+            { id: "out_food", start: "飲食照顧細節", end: "飲水照顧細節" },
+            { id: "out_water", start: "飲水照顧細節", end: "代謝監控清潔" },
+            { id: "out_toilet", start: "代謝監控清潔", end: "心理安撫互動" },
+            { id: "out_play", start: "心理安撫互動", end: "鑰匙安全物流" },
+            { id: "out_key", start: "鑰匙安全物流", end: "環境電器備註" },
+            { id: "out_elec", start: "環境電器備註", end: "客製任務" },
+            { id: "out_custom", start: "客製任務", end: "影像授權意願" },
+            { id: "out_booking", start: "本次預約方案與日期時間", end: "住家網路WiFi" },
+            { id: "out_wifi", start: "住家網路WiFi", end: "END" }
+        ];
+
+        mapping.forEach(m => {
+            const s = txt.indexOf(m.start);
+            const e = m.end === "END" ? txt.length : txt.indexOf(m.end);
+            if (s !== -1) {
+                let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
+                val = val.replace(/^[:：\s\n\)]+/g, "").trim();
+                document.getElementById(m.id).innerText = val || "（無）";
+            }
+        });
+        document.getElementById('dashboard').style.display = 'grid';
+    }
+</script>
+</body>
+</html>
