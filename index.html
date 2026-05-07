@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜毛孩專屬照護計畫書 V21.1</title>
+    <title>ㄌㄌ保姆｜毛孩專屬照護計畫書 V21.2</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
@@ -64,7 +64,7 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin:0 0 5px 0;">ʚ ㄌㄌ保姆｜計畫書生成器 V21.1 (精準修正版) ɞ</h3>
+    <h3 style="color: var(--deep); margin:0 0 5px 0;">ʚ ㄌㄌ保姆｜計畫書生成器 V21.2 ɞ</h3>
     <textarea id="rawInput" placeholder="直接貼上 Google 表單內容..."></textarea>
     <div style="margin-top: 10px;">
         <button onclick="parseV21()">✨ 生成計畫書</button>
@@ -142,13 +142,13 @@
     <div class="footer">
         <div class="disclaimer-box">
             <b>⚖️ 服務安全與信任說明：</b><br>
-            [span_5](start_span)家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。[span_5](end_span)
+            家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。
         </div>
         <div class="brand-footer">
             <div class="qr-item"><img src="ig.png" alt="IG"><div>Instagram</div></div>
             <div class="qr-item"><img src="line.png" alt="Line"><div>Line OA</div></div>
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V21.1</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V21.2</div>
     </div>
 </div>
 
@@ -157,9 +157,9 @@
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 加強版除噪：解決冒號差異與指令殘留
-        const noiseRegs = [
-            /\*/g, /電子郵件/g, /這份表單會要求你輸入電子郵件地址。變更設定/g,
+        // 除噪邏輯
+        const noiseStrings = [
+            /\*/g, /電子郵件/g, /這份表單會要求你輸入電子郵件地址.*/g,
             /請留下主要聯絡人稱呼與手機.*/g, /請填寫名字、品種或花色.*/g,
             /此為加購項目，包含點藥、擦藥、餵藥細節.*/g,
             /緊急時備用，請註明醫院名稱與醫師.*/g,
@@ -169,41 +169,40 @@
             /此為加購項目\n\n毛孩是否可接受保姆慢步調陪玩.*/g,
             /交付方式、歸還處，若為密碼鎖請留操作步驟/g, 
             /需要留哪些燈？天氣熱是否開冷氣？需定時嗎？/g,
-            /如有需要協助除濕機倒水、植栽澆水或其他小任務.*/gs,
+            /如有需要協助除濕機倒水、植栽澆水或其他小任務.*/g,
             /請問是否同意服務過程中拍攝的毛小孩照片.*/g,
             /• 生活照顧.*/g, /• 預約日期時間是.*/g, /• 請問離家時間.*/g,
             /訊號差時，可供即時回報使用，wifi名稱與密碼為？/g,
-            /好的,我已明白,我會自行將財物與貴重用品收藏好.*/gs
+            /好的,我已明白,我會自行將財物與貴重用品收藏好.*/g
         ];
-        noiseRegs.forEach(reg => { txt = txt.replace(reg, ""); });
+        noiseStrings.forEach(reg => { txt = txt.replace(reg, ""); });
 
+        [span_6](start_span)// 對齊 PDF 中的正確標題[span_6](end_span)
         const mapping = [
-            { id: "out_client", start: "聯絡資訊", end: "服務地址" },
-            { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
-            { id: "out_profile", start: "毛孩詳細檔案", end: "醫療健康照護" },
-            { id: "out_health", start: "醫療健康照護", end: "指定救援醫院" },
-            { id: "out_vet", start: "指定救援醫院", end: "飲食照顧細節" },
-            { id: "out_food", start: "飲食照顧細節", end: "飲水照顧細節" },
-            { id: "out_water", start: "飲水照顧細節", end: "代謝監控清潔" },
-            { id: "out_toilet", start: "代謝監控清潔", end: "心理安撫互動" },
-            { id: "out_play", start: "心理安撫互動", end: "鑰匙安全物流" },
-            { id: "out_key", start: "鑰匙安全物流", end: "環境電器備註" },
-            { id: "out_elec", start: "環境電器備註", end: "客製任務" },
-            { id: "out_custom", start: "客製任務", end: "影像授權意願" },
-            { id: "out_media_raw", start: "影像授權意願", end: "本次預約方案與日期時間" },
-            { id: "out_booking", start: "本次預約方案與日期時間", end: "住家網路WiFi" },
-            { id: "out_wifi", start: "住家網路WiFi", end: "END" }
+            { id: "out_client", start: "委託家長", end: "服務地址" },
+            { id: "out_addr", start: "服務地址", end: "WiFi" },
+            { id: "out_wifi", start: "WiFi", end: "照護素材" },
+            { id: "out_media_raw", start: "照護素材", end: "本次預約與方案" },
+            { id: "out_booking", start: "本次預約與方案", end: "鑰匙委託與安全" },
+            { id: "out_key", start: "鑰匙委託與安全", end: "醫療健康照護" },
+            { id: "out_health", start: "醫療健康照護", end: "毛孩詳細檔案" },
+            { id: "out_profile", start: "毛孩詳細檔案", end: "營養與飲食照顧細節" },
+            { id: "out_food", start: "營養與飲食照顧細節", end: "飲水衛生細節" },
+            { id: "out_water", start: "飲水衛生細節", end: "環境清潔與如廁觀察" },
+            { id: "out_toilet", start: "環境清潔與如廁觀察", end: "心理安撫與互動" },
+            { id: "out_play", start: "心理安撫與互動", end: "環境電器使用說明" },
+            { id: "out_elec", start: "環境電器使用說明", end: "委託客製小任務" },
+            { id: "out_custom", start: "委託客製小任務", end: "END" }
         ];
 
         let results = {};
         mapping.forEach(m => {
             const s = txt.indexOf(m.start);
-            // 嘗試模糊搜尋結尾，解決表單微差
             let e = (m.end === "END") ? txt.length : txt.indexOf(m.end);
             
             if (s !== -1) {
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
-                // 掃除開頭殘留符號，包含鑰匙區常見的句號
+                [span_7](start_span)// 清除開頭結尾的殘留標點[span_7](end_span)
                 val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
                 results[m.id] = val;
                 if (document.getElementById(m.id)) {
@@ -212,17 +211,15 @@
             }
         });
 
-        [span_6](start_span)// 影像授權印章邏輯：檢查包含「願意」字樣[span_6](end_span)
+        [span_8](start_span)// 影像授權印章邏輯[span_8](end_span)
         const badge = document.getElementById('media_badge_area');
         const mediaAnswer = results['out_media_raw'] || "";
-        if (mediaAnswer.includes("可以") || mediaAnswer.includes("願意") || mediaAnswer.includes("同意")) {
+        if (mediaAnswer.includes("願意") || mediaAnswer.includes("同意") || mediaAnswer.includes("可以")) {
             badge.innerHTML = "📷 我願意分享<br>毛孩照片/錄影";
             badge.style.borderColor = "#7B6896"; badge.style.color = "#7B6896"; badge.style.display = "block";
-        } else if (mediaAnswer.includes("不")) {
+        } else {
             badge.innerHTML = "🔒 照護素材<br>不對外公開";
             badge.style.borderColor = "#999"; badge.style.color = "#666"; badge.style.display = "block";
-        } else {
-            badge.style.display = "none";
         }
 
         document.getElementById('dashboard').style.display = 'grid';
