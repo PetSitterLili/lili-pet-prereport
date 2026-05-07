@@ -1,14 +1,14 @@
 {
-  "name": "ㄌㄌ保姆｜專屬照護計畫書",
+  "name": "ㄌㄌ照護計畫書",
   "short_name": "ㄌㄌ計畫書",
   "description": "職人級寵物照護策略與精品回報系統",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#FCFAF2",
+  "background_color": "#FFFFFF",
   "theme_color": "#9B89B3",
   "icons": [
     {
-      "src": "20260508_043325_0000.png",
+      "src": "20260508_045228_0000.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
