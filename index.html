@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜案場執行戰情報 V14 (GitHub 版)</title>
+    <title>ㄌㄌ保姆｜案場執行戰情報 V14 (GitHub 正式版)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #F4F2F9; --text: #4A4453; }
@@ -14,7 +14,8 @@
         button { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: bold; }
         #dashboard { max-width: 900px; margin: 0 auto; display: none; grid-template-columns: 1fr 1fr; gap: 15px; }
         .header { grid-column: span 2; background: var(--primary); color: white; padding: 25px; border-radius: 15px; text-align: center; position: relative; }
-        .header img { width: 60px; height: 60px; border-radius: 50%; position: absolute; left: 20px; top: 50%; transform: translateY(-50%); border: 2px solid white; }
+        /* 頁首貓咪插圖 - 預設大橘 */
+        .header img { width: 80px; height: 80px; border-radius: 50%; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); border: 2px solid white; background: white; }
         .header h2 { margin: 0; letter-spacing: 5px; }
         .wifi-tag { background: rgba(0,0,0,0.1); display: inline-block; padding: 5px 15px; border-radius: 20px; margin-top: 10px; font-size: 13px; font-weight: bold; }
         .booking-highlight { grid-column: span 2; background: #FFF; border: 2.5px solid var(--primary); padding: 15px; border-radius: 12px; text-align: center; }
@@ -22,10 +23,10 @@
         .card h3 { color: var(--primary); margin: 0 0 10px 0; border-bottom: 1px solid #EEE; padding-bottom: 5px; font-size: 16px; }
         .content { white-space: pre-wrap; font-size: 14px; color: #333; line-height: 1.5; }
         .full { grid-column: span 2; }
-        .footer { grid-column: span 2; background: #FFF; padding: 20px; border-radius: 12px; text-align: center; margin-top: 15px; border: 1px solid #EEE; }
-        .qr-group { display: flex; justify-content: center; gap: 30px; margin-top: 15px; }
-        .qr-item { text-align: center; font-size: 10px; color: var(--primary); }
-        .qr-item img { width: 80px; height: 80px; border: 1px solid #EEE; border-radius: 5px; margin-bottom: 5px; }
+        .footer { grid-column: span 2; background: #FFF; padding: 25px; border-radius: 12px; text-align: center; margin-top: 15px; border: 1px solid #EEE; }
+        .qr-group { display: flex; justify-content: center; gap: 40px; margin-top: 20px; }
+        .qr-item { text-align: center; font-size: 12px; color: var(--primary); font-weight: bold; }
+        .qr-item img { width: 90px; height: 90px; border: 1px solid #EEE; border-radius: 8px; margin-bottom: 8px; }
         @media print { .input-box { display: none; } #dashboard { display: grid !important; } .card { break-inside: avoid; } }
         @media (max-width: 600px) { #dashboard { grid-template-columns: 1fr; } .full, .header, .booking-highlight { grid-column: span 1; } }
     </style>
@@ -33,22 +34,22 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--primary);">ʚ ㄌㄌ保姆｜案場解析助手 V14 (GitHub 版) ɞ</h3>
+    <h3 style="color: var(--primary);">ʚ ㄌㄌ保姆｜案場解析助手 V14 (正式版) ɞ</h3>
     <textarea id="rawInput" placeholder="全選複製 Google 回條內容並貼上於此..."></textarea>
     <button onclick="parseV14()">✨ 生成穩定版攻略本</button>
-    <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 / 存為 PDF</button>
+    <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 存為高質感 PDF</button>
 </div>
 
 <div id="dashboard">
     <div class="header">
-        <img src="cat.png" alt="Lili">
+        <img src="cat_orange.png" alt="Lili Clay Cat">
         <h2>案場執行攻略</h2>
         <div id="out_addr" style="margin-top:8px; font-size: 14px;"></div>
         <div class="wifi-tag">📶 WiFi：<span id="out_wifi">載入中</span></div>
     </div>
 
     <div class="booking-highlight">
-        <b style="color:var(--primary); font-size:12px; display:block; margin-bottom:5px;">預約方案與日期時間</b>
+        <b style="color:var(--primary); font-size:12px; display:block; margin-bottom:5px;">本次預約方案與日期時間</b>
         <div id="out_booking" class="content" style="font-weight:bold; font-size:16px;"></div>
     </div>
 
@@ -72,12 +73,13 @@
 
     <div class="footer">
         <div style="font-size: 11px; color: #777; text-align: left; background: #F9F8FD; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-            <b>⚖️ 免責聲明：</b>貴重財物請自行妥善保管。若有疑問請於服務後 3 日內提出。ㄌㄌ保姆持有良民證。
+            <b>⚖️ 免責聲明：</b>貴重財物請自行妥善保管。若有疑問請於服務後 3 日內提出。ㄌㄌ保姆（陳苡彤）持有良民證。
         </div>
         <div class="qr-group">
-            <div class="qr-item"><img src="ig.png" alt="IG"><div>Instagram</div></div>
-            <div class="qr-item"><img src="threads.png" alt="Threads"><div>Threads</div></div>
+            <div class="qr-item"><img src="ig.png" alt="Instagram"><div>Instagram</div></div>
+            <div class="qr-item"><img src="line.png" alt="Line"><div>Line OA</div></div>
         </div>
+        <div style="font-size: 10px; color: #CCC; margin-top: 20px;">Lili Pet Sitter Professional Dashboard</div>
     </div>
 </div>
 
@@ -122,7 +124,7 @@
             if (s !== -1) {
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
                 val = val.replace(/^[:：\s\n\)]+/g, "").trim();
-                document.getElementById(m.id).innerText = val || "（無）";
+                document.getElementById(m.id).innerText = val || "（無資料）";
             }
         });
         document.getElementById('dashboard').style.display = 'grid';
