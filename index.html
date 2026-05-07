@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V34</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V34.1</title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { 
             --morandi-purple: #9B89B3; 
             --morandi-deep: #7B6896;   
             --brown-gold: #A68F68;     
-            --milky-white: #FCFAF2;    
             --text-main: #4A4540;      
         }
         
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
-        body { font-family: 'Noto Sans TC', sans-serif; background: #F7F5F0; margin: 0; padding: 10px; color: var(--text-main); font-size: 12px; }
+        /* 移除背景色，改為潔淨白 */
+        body { font-family: 'Noto Sans TC', sans-serif; background: #FFFFFF; margin: 0; padding: 10px; color: var(--text-main); font-size: 12px; }
         
-        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid var(--morandi-purple); }
+        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--morandi-purple); }
         textarea { width: 100%; height: 85px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
         button { background: var(--morandi-deep); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; transition: 0.3s; }
 
@@ -27,7 +27,6 @@
             background: white; padding: 25px; border-radius: 20px;
         }
         
-        /* 大標題改用圓體 */
         .plan-title { grid-column: span 6; text-align: center; padding-bottom: 5px; }
         .plan-title h1 { 
             margin: 0; letter-spacing: 6px; font-size: 24px; 
@@ -40,14 +39,13 @@
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
         .wifi-capsule { background: rgba(255,255,255,0.15); display: inline-block; padding: 4px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 0.5px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 1.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
+        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 2.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
 
         .col-2 { grid-column: span 2; } .col-3 { grid-column: span 3; } .col-6 { grid-column: span 6; }
 
-        /* 卡片精品化 */
-        .card { background: var(--milky-white); padding: 15px; border-radius: 8px; border: 0.8px solid var(--brown-gold); box-shadow: 0 4px 15px rgba(166, 143, 104, 0.05); }
+        /* 卡片精品化：移除奶白底色，改用純白 */
+        .card { background: #FFFFFF; padding: 15px; border-radius: 8px; border: 0.8px solid var(--brown-gold); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); }
         
-        /* 小標題改用襯線體 (宋體) 並維持漸層 */
         .card h3 { 
             background: linear-gradient(90deg, #B5A8C5 0%, #DED9E5 100%); 
             color: white;
@@ -65,7 +63,7 @@
         .stack-wrapper { display: flex; flex-direction: column; gap: 10px; }
 
         .footer { grid-column: span 6; margin-top: 20px; border-top: 0.5px solid var(--brown-gold); padding-top: 15px; }
-        .disclaimer-box { font-size: 10.5px; color: #777; background: #FDFBFA; padding: 12px; border-radius: 10px; border: 0.5px solid #EEE; line-height: 1.7; }
+        .disclaimer-box { font-size: 10.5px; color: #777; background: #FFFFFF; padding: 12px; border-radius: 10px; border: 0.5px solid #EEE; line-height: 1.7; }
         
         .brand-footer { grid-column: span 6; text-align: center; padding: 15px 0; }
         .social-invite { color: var(--morandi-deep); font-size: 11px; margin-bottom: 15px; font-weight: 500; font-family: 'Zen Maru Gothic', sans-serif; }
@@ -83,7 +81,7 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34 ɞ</h3>
+    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34.1 (純淨版) ɞ</h3>
     <textarea id="rawInput" placeholder="直接全選貼上 Google 表單回應內容..."></textarea>
     <div style="margin-top: 10px;">
         <button onclick="parseV33()">✨ 生成精品計畫書</button>
@@ -106,7 +104,7 @@
         <div id="media_badge_area" class="media-badge"></div>
     </div>
 
-    <div class="card col-2" style="background: #FFF;">
+    <div class="card col-2">
         <h3>🕒 陪伴毛孩的時間與細節</h3>
         <div id="out_booking" class="content" style="font-weight:bold; color: var(--morandi-deep);"></div>
     </div>
@@ -128,8 +126,8 @@
 
     <div class="card col-3"><h3>🌸 放鬆心情的玩耍與陪伴</h3><div id="out_play" class="content"></div></div>
     <div class="stack-wrapper col-3">
-        <div class="card" style="background: #FFF;"><h3>💡 舒適空間控制與電器使用</h3><div id="out_elec" class="content"></div></div>
-        <div class="card" style="background: #FFF;"><h3>🔧 爸爸媽媽交代的貼心任務</h3><div id="out_custom" class="content"></div></div>
+        <div class="card"><h3>💡 舒適空間控制與電器使用</h3><div id="out_elec" class="content"></div></div>
+        <div class="card"><h3>🔧 爸爸媽媽交代的貼心任務</h3><div id="out_custom" class="content"></div></div>
     </div>
 
     <div class="footer">
@@ -153,7 +151,6 @@
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 【穩定核心】完全鎖定 V33/V20 最穩定的解析座標，絕不更動
         const mapping = [
             { id: "out_client", start: "聯絡資訊", end: "服務地址" },
             { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
