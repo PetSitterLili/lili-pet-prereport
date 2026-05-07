@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜毛孩專屬照護計畫書 V21.4</title>
+    <title>ㄌㄌ保姆｜毛孩專屬照護計畫書 V21.5</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
         body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12.5px; }
         
-        /* 介面控制 */
+        /* 輸入介面 */
         .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 12px; border-radius: 10px; text-align: center; border: 1px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        textarea { width: 100%; height: 60px; border: 1px solid #DDD; border-radius: 8px; padding: 8px; font-size: 12px; }
-        button { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        textarea { width: 100%; height: 65px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
+        button { background: var(--primary); color: white; border: none; padding: 8px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 8px; }
 
-        /* 核心佈局：6 欄位系統 */
+        /* 佈局核心 */
         #dashboard { 
             max-width: 950px; 
             margin: 0 auto; 
@@ -24,7 +24,7 @@
             gap: 10px; 
         }
         
-        .plan-title { grid-column: span 6; text-align: center; padding: 10px 0; }
+        .plan-title { grid-column: span 6; text-align: center; padding: 10px 0 5px 0; }
         .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 26px; color: var(--deep); font-family: 'Playfair Display', serif; }
 
         .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; }
@@ -34,7 +34,6 @@
         .wifi-capsule { background: rgba(255,255,255,0.2); display: inline-block; padding: 3px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; }
         .media-badge { background: white; color: var(--deep); padding: 8px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; border: 2.5px solid var(--deep); text-align: center; min-width: 140px; }
 
-        /* 柵格控制 */
         .col-2 { grid-column: span 2; }
         .col-3 { grid-column: span 3; }
         .col-6 { grid-column: span 6; }
@@ -43,15 +42,11 @@
         .card h3 { color: var(--deep); margin: 0 0 6px 0; border-bottom: 1px solid #F5F5F5; padding-bottom: 4px; font-size: 13px; font-weight: bold; }
         .content { white-space: pre-wrap; font-size: 12px; line-height: 1.5; color: #444; }
         
-        /* 內部排版：雙欄內容 */
         .two-col-content { column-count: 2; column-gap: 20px; }
         .stack-wrapper { display: flex; flex-direction: column; gap: 10px; }
 
         .footer { grid-column: span 6; margin-top: 15px; }
         .disclaimer-box { font-size: 11px; color: #777; background: #F9F9F9; padding: 12px; border-radius: 10px; border: 1px solid #EEE; line-height: 1.6; }
-        .brand-footer { display: flex; justify-content: center; gap: 40px; padding: 15px 0; border-bottom: 1px solid #EEE; margin-bottom: 5px; }
-        .qr-item { text-align: center; font-size: 10px; color: var(--primary); }
-        .qr-item img { width: 60px; height: 60px; border-radius: 5px; border: 1px solid #EEE; margin-bottom: 4px; }
 
         @media print { 
             .input-box { display: none; } 
@@ -66,9 +61,9 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin:0 0 5px 0;">ʚ ㄌㄌ保姆｜計畫書生成器 V21.4 ɞ</h3>
+    <h3 style="color: var(--deep); margin:0 0 5px 0;">ʚ ㄌㄌ保姆｜計畫書生成器 V21.5 (終極排版版) ɞ</h3>
     <textarea id="rawInput" placeholder="直接貼上 Google 表單回應內容..."></textarea>
-    <div style="margin-top: 10px;">
+    <div>
         <button onclick="parseV21()">✨ 生成計畫書</button>
         <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
     </div>
@@ -88,7 +83,7 @@
                 <div class="wifi-capsule">📶 WiFi：<span id="out_wifi">未提供</span></div>
             </div>
         </div>
-        <div id="media_badge_area" class="media-badge">影像授權解析中</div>
+        <div id="media_badge_area" class="media-badge"></div>
     </div>
 
     <div class="card col-2" style="background: #FAF9FC; border-color: var(--deep);">
@@ -145,11 +140,7 @@
             <b>⚖️ 服務安全與信任說明：</b><br>
             家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。
         </div>
-        <div class="brand-footer">
-            <div class="qr-item"><img src="ig.png" alt="IG"><div>Instagram</div></div>
-            <div class="qr-item"><img src="line.png" alt="Line"><div>Line OA</div></div>
-        </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V21.4</div>
+        <div style="text-align:center; font-size:10px; color:#CCC; margin-top:10px;">Lili Pet Sitter Case Report V21.5</div>
     </div>
 </div>
 
@@ -158,11 +149,11 @@
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 1. 先將題目中的「*」與「Email」等表單垃圾移除
+        // 1. 強力除噪：移除所有星號與 Email
         txt = txt.replace(/\*/g, "").replace(/電子郵件/g, "");
 
-        // 2. 物理蒸發：說明文字去噪 (根據妳提供的清單)
-        const noiseList = [
+        // 2. 移除所有說引導文字 (雜訊)
+        const noises = [
             /請留下主要聯絡人稱呼與手機.*/g,
             /請填寫名字、品種或花色.*/g,
             /此為加購項目，包含點藥、擦藥、餵藥細節.*/g,
@@ -174,7 +165,7 @@
             /毛孩是否可接受保姆慢步調陪玩.*/g,
             /交付方式、歸還處，若為密碼鎖請留操作步驟/g,
             /需要留哪些燈？天氣熱是否開冷氣？需定時嗎？/g,
-            /如有需要協助除濕機倒水.*舉手之勞.*/gs,
+            /如有需要協助除濕機倒水.*舉手之勞.*/g,
             /如服務時間足夠.*主要還是以毛孩照護狀況為主.*/gs,
             /請問是否同意服務過程中拍攝的毛小孩照片.*/g,
             /包括但不限於官方LINE、IG、threads.*/g,
@@ -184,9 +175,9 @@
             /訊號差時，可供即時回報使用，wifi名稱與密碼為？/g,
             /好的,我已明白,我會自行將財物與貴重用品收藏好.*/gs
         ];
-        noiseList.forEach(reg => { txt = txt.replace(reg, ""); });
+        noises.forEach(n => { txt = txt.replace(n, ""); });
 
-        // 3. 精確座標對齊 (完全比照妳給的乾淨清單)
+        // 3. 座標對位 (根據乾淨題目與 PDF 修正)
         const mapping = [
             { id: "out_client", start: "聯絡資訊", end: "服務地址" },
             { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
@@ -196,7 +187,7 @@
             { id: "out_food", start: "飲食照顧細節", end: "飲水照顧細節" },
             { id: "out_water", start: "飲水照顧細節", end: "代謝監控清潔" },
             { id: "out_toilet", start: "代謝監控清潔", end: "心理安撫互動" },
-            { id: "out_play", start: "心理安撫互動", end: "鑰匙安全物流" },
+            { id: "out_play", start: "心理安撫互動", end: "鑰匙安全物流" }, // 若家長貼上的標題是"鑰匙委託與安全"，此處需注意
             { id: "out_key", start: "鑰匙安全物流", end: "環境電器備註" },
             { id: "out_elec", start: "環境電器備註", end: "客製任務" },
             { id: "out_custom", start: "客製任務", end: "影像授權意願" },
@@ -205,29 +196,36 @@
             { id: "out_wifi", start: "住家網路WiFi", end: "END" }
         ];
 
-        let results = {};
+        // 針對 PDF 標題差異做預處理 (PDF 中為：本次預約與方案、鑰匙委託與安全)
+        txt = txt.replace(/本次預約與方案/g, "本次預約方案與日期時間");
+        txt = txt.replace(/鑰匙委託與安全/g, "鑰匙安全物流");
+        txt = txt.replace(/環境清潔與如廁觀察/g, "代謝監控清潔");
+        txt = txt.replace(/心理安撫與互動/g, "心理安撫互動");
+        txt = txt.replace(/環境電器使用說明/g, "環境電器備註");
+
+        let res = {};
         mapping.forEach(m => {
             const s = txt.indexOf(m.start);
             const e = (m.end === "END") ? txt.length : txt.indexOf(m.end);
             
             if (s !== -1) {
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
-                // 掃除開頭符號與鑰匙末端多出的句號
+                // 極致掃除開頭結尾符號 (掃除句號、冒號、括號)
                 val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
-                results[m.id] = val;
+                res[m.id] = val;
                 if (document.getElementById(m.id)) {
                     document.getElementById(m.id).innerText = val || "（家長未填寫）";
                 }
             }
         });
 
-        // 4. 影像授權印章邏輯 (判定「可以」或「不願意」)
+        // 4. 影像印章
         const badge = document.getElementById('media_badge_area');
-        const mediaAnswer = results['out_media_raw'] || "";
-        if (mediaAnswer.includes("可以") || mediaAnswer.includes("願意") || mediaAnswer.includes("同意")) {
+        const ans = res['out_media_raw'] || "";
+        if (ans.includes("可以") || ans.includes("願意") || ans.includes("同意")) {
             badge.innerHTML = "📷 我願意分享<br>毛孩照片/錄影";
             badge.style.borderColor = "#7B6896"; badge.style.color = "#7B6896"; badge.style.display = "block";
-        } else if (mediaAnswer.includes("不")) {
+        } else if (ans.includes("不")) {
             badge.innerHTML = "🔒 照護素材<br>不對外公開";
             badge.style.borderColor = "#999"; badge.style.color = "#666"; badge.style.display = "block";
         } else {
