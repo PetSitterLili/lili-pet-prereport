@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業寵物照護計畫書 V30</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V30.1</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
         body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12px; }
         
+        /* 輸入介面樣式 */
         .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--primary); }
-        textarea { width: 100%; height: 80px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
-        button { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        textarea { width: 100%; height: 85px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 5px; transition: 0.3s; }
+        button:hover { background: var(--deep); }
 
+        /* 儀表板核心佈局 (6欄位系統) */
         #dashboard { 
             max-width: 950px; margin: 0 auto; display: none; 
             grid-template-columns: repeat(6, 1fr); gap: 10px; 
@@ -23,6 +26,7 @@
         .plan-title { grid-column: span 6; text-align: center; padding-bottom: 5px; }
         .plan-title h1 { margin: 0; letter-spacing: 8px; font-size: 24px; color: var(--deep); font-family: 'Playfair Display', serif; }
 
+        /* 頁首 Header：含 WiFi 搬移位 */
         .info-header { grid-column: span 6; background: var(--primary); color: white; padding: 15px 25px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; }
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
@@ -33,13 +37,16 @@
         .col-3 { grid-column: span 3; }
         .col-6 { grid-column: span 6; }
 
+        /* 卡片設計 */
         .card { background: white; padding: 12px; border-radius: 10px; border-top: 4px solid var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
         .card h3 { color: var(--deep); margin: 0 0 6px 0; border-bottom: 1px solid #F5F5F5; padding-bottom: 4px; font-size: 13px; font-weight: bold; }
         .content { white-space: pre-wrap; font-size: 11.5px; line-height: 1.5; color: #444; }
         
+        /* 內部內容雙欄化 */
         .two-col-content { column-count: 2; column-gap: 20px; }
         .stack-wrapper { display: flex; flex-direction: column; gap: 10px; }
 
+        /* 頁尾資訊 */
         .footer { grid-column: span 6; margin-top: 15px; }
         .disclaimer-box { font-size: 10.5px; color: #777; background: #F9F9F9; padding: 12px; border-radius: 10px; border: 1px solid #EEE; line-height: 1.6; }
         .brand-footer { display: flex; justify-content: center; gap: 50px; padding: 20px 0; border-bottom: 1px solid #EEE; margin-bottom: 10px; }
@@ -59,9 +66,12 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V30 ɞ</h3>
-    <textarea id="rawInput" placeholder="全選貼上 Google 表單內容..."></textarea>
-    <button onclick="parseV30()">✨ 生成計畫書</button>
+    <h3 style="color: var(--deep); margin-bottom: 5px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V30.1 ɞ</h3>
+    <textarea id="rawInput" placeholder="全選貼上 Google 表單回應內容..."></textarea>
+    <div style="margin-top: 10px;">
+        <button onclick="parseV30()">✨ 生成計畫書</button>
+        <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
+    </div>
 </div>
 
 <div id="dashboard">
@@ -114,7 +124,7 @@
             <div class="qr-item"><img src="./ig.png" alt="IG"><div>Instagram</div></div>
             <div class="qr-item"><img src="./line.png" alt="Line"><div>Line OA</div></div>
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V30 | 定案精品版</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V30.1 | 定案精品版</div>
     </div>
 </div>
 
@@ -123,7 +133,7 @@
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // V20 核心邏輯：物理順序切片
+        // V20 物理區間切片邏輯：精準對位 15 個乾淨題幹
         const mapping = [
             { id: "out_client", start: "聯絡資訊", end: "服務地址" },
             { id: "out_addr", start: "服務地址", end: "毛孩詳細檔案" },
@@ -149,7 +159,7 @@
             if (s !== -1) {
                 let val = txt.substring(s + m.start.length, e !== -1 ? e : txt.length).trim();
                 
-                // 物理除噪：靜音所有表單說明與指令文字
+                // 物理除噪：靜音所有說明文字
                 const noises = [
                     /請留下主要聯絡人.*/g, /請填寫名字.*/g, /此為加購項目.*/g, /緊急時備用.*/g,
                     /食盆數量.*/g, /水盆數量.*/g, /砂盆數量.*/g, /交付方式.*/g,
@@ -160,20 +170,19 @@
                 ];
                 noises.forEach(n => { val = val.replace(n, ""); });
 
-                // 掃除開頭符號與標點
+                // 掃除開頭冒號與鑰匙結尾句號
                 val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
                 results[m.id] = val;
                 
-                // 填入對應區塊
                 const el = document.getElementById(m.id);
                 if (el) el.innerText = val || "（家長未填寫）";
             }
         });
 
-        // 搬移 WiFi 到 Header
+        // 搬移 WiFi 資訊到 Header，核對地址時即可同步查看
         if (results['out_wifi']) document.getElementById('out_wifi_disp').innerText = results['out_wifi'];
 
-        // 影像印章邏輯
+        [span_1](start_span)// 影像授權印章邏輯：根據簡答內容判定[span_1](end_span)
         const badge = document.getElementById('media_badge_area');
         const mediaAns = results['out_media'] || "";
         if (mediaAns.includes("可以") || mediaAns.includes("願意") || mediaAns.includes("同意")) {
