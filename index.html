@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V28</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V29</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #9B89B3; --deep: #7B6896; --bg: #FDFBFF; --text: #333; }
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
         body { font-family: 'Noto Sans TC', sans-serif; background: #f0f0f0; margin: 0; padding: 10px; color: var(--text); font-size: 12.5px; }
         
-        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 20px; border-radius: 15px; text-align: center; border: 2px solid var(--primary); }
-        textarea { width: 100%; height: 100px; border: 1px solid #DDD; border-radius: 10px; padding: 12px; font-size: 13px; }
-        button { background: var(--primary); color: white; border: none; padding: 12px 35px; border-radius: 25px; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 14px; }
+        .input-box { max-width: 900px; margin: 0 auto 10px; background: white; padding: 15px; border-radius: 12px; text-align: center; border: 2px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 85px; border: 1px solid #DDD; border-radius: 8px; padding: 10px; font-size: 12px; }
+        button { background: var(--primary); color: white; border: none; padding: 10px 30px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 8px; font-size: 14px; }
 
         #dashboard { 
             max-width: 950px; margin: 0 auto; display: none; 
@@ -59,10 +59,10 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--deep); margin-bottom: 10px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V28 (無腦一鍵複製版) ɞ</h3>
+    <h3 style="color: var(--deep); margin-bottom: 8px;">ʚ ㄌㄌ保姆｜專業照護計畫書 V29 ɞ</h3>
     <textarea id="rawInput" placeholder="直接全選複製 Google 表單內容並貼上於此..."></textarea>
     <div style="margin-top: 10px;">
-        <button onclick="parseV28()">✨ 生成計畫書</button>
+        <button onclick="parseV29()">✨ 生成精品計畫書</button>
         <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
     </div>
 </div>
@@ -74,9 +74,9 @@
         <div class="left-part">
             <img src="./cat_orange.png" alt="Lili">
             <div class="info-text">
-                <b>委託家長：<span id="out_client">解析中</span></b><br>
-                <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中</span></span><br>
-                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi">未提供</span></div>
+                <b>委託家長：<span id="out_client">解析中...</span></b><br>
+                <span style="font-size: 12px; opacity: 0.9;">服務地址：<span id="out_addr">解析中...</span></span><br>
+                <div class="wifi-capsule">📶 WiFi：<span id="out_wifi">未提供資訊</span></div>
             </div>
         </div>
         <div id="media_badge_area" class="media-badge"></div>
@@ -121,11 +121,11 @@
         <div id="out_play" class="content"></div>
     </div>
     <div class="stack-wrapper col-3">
-        <div class="card" style="border-top-color: #A8D8EA;">
+        <div class="card" style="border-top: 4px solid #A8D8EA;">
             <h3>💡 環境電器備註</h3>
             <div id="out_elec" class="content"></div>
         </div>
-        <div class="card" style="border-top-color: #AA96DA;">
+        <div class="card" style="border-top: 4px solid #AA96DA;">
             <h3>🔧 客製任務</h3>
             <div id="out_custom" class="content"></div>
         </div>
@@ -134,22 +134,22 @@
     <div class="footer">
         <div class="disclaimer-box">
             <b>⚖️ 服務安全與信任說明：</b><br>
-            家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。
+            [span_5](start_span)家中貴重財物可交由親友保管或存放於上鎖房間。<b>您可以視需求安裝監視器，且無需告知保姆其安裝位置</b>。若有任何疑問，請於服務後 3 日內提出。<b>保姆本名：陳苡彤</b>，持有良民證。致力於提供專業、透明且充滿愛的服務。[span_5](end_span)
         </div>
         <div class="brand-footer">
             <div class="qr-item"><img src="./ig.png" alt="IG"><div>Instagram</div></div>
             <div class="qr-item"><img src="./line.png" alt="Line"><div>Line OA</div></div>
         </div>
-        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V28 | 定案穩定版</div>
+        <div style="text-align:center; font-size:10px; color:#CCC;">Lili Pet Sitter Case Report V29 | 終極穩定版</div>
     </div>
 </div>
 
 <script>
-    function parseV28() {
+    function parseV29() {
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
 
-        // 1. 強力除噪 (排除所有說明文字與 Google 系統垃圾)
+        // 1. 去噪 (物理蒸發說明文字)
         const noises = [
             /\*/g, /電子郵件/g, /切換帳戶/g, /在我的回覆中記錄以下電子郵件地址.*/g,
             /請留下主要聯絡人稱呼與手機.*/g, /請填寫名字、品種或花色.*/g,
@@ -161,27 +161,26 @@
             /如服務時間足夠.*主要還是以毛孩照護狀況為主.*/gs, /請問是否同意服務過程中拍攝的毛小孩照片.*/g,
             /包括但不限於官方LINE、IG、threads.*/g, /• 生活照顧.*陪伴專案.*/g,
             /• 預約日期時間是.*/g, /• 請問離家時間.*/g, /訊號差時，可供即時回報使用，wifi名稱與密碼為？/g,
-            /請確認已加入ㄌㄌ官方帳號.*/gs, /系統會將你的回覆副本.*/gs, /請勿利用 Google 表單送出密碼.*/gs,
-            /Google 並未認可或建立這項內容.*/gs
+            /請確認已加入ㄌㄌ官方帳號.*/gs, /系統會將你的回覆副本.*/gs, /Google 並未認可或建立這項內容.*/gs
         ];
         noises.forEach(n => { txt = txt.replace(n, ""); });
 
-        // 2. 定位標題 (絕對座標)
+        // 2. 模糊座標清單 (自動適應帶有裝飾符號的標題)
         const headers = [
             { id: "out_client", match: ["聯絡資訊"] },
             { id: "out_addr", match: ["服務地址"] },
             { id: "out_profile", match: ["毛孩詳細檔案"] },
-            { id: "out_key", match: ["鑰匙安全物流"] },
+            { id: "out_key", match: ["鑰匙安全物流", "鑰匙委託與安全"] },
             { id: "out_health", match: ["醫療健康照護"] },
             { id: "out_vet", match: ["指定救援醫院"] },
             { id: "out_food", match: ["飲食照顧細節"] },
-            { id: "out_water", match: ["飲水照顧細節"] },
-            { id: "out_toilet", match: ["代謝監控清潔"] },
-            { id: "out_play", match: ["心理安撫互動"] },
-            { id: "out_elec", match: ["環境電器備註"] },
+            { id: "out_water", match: ["飲水照顧細節", "飲水衛生細節"] },
+            { id: "out_toilet", match: ["代謝監控清潔", "環境清潔與如廁觀察"] },
+            { id: "out_play", match: ["心理安撫互動", "心理安撫與互動"] },
+            { id: "out_elec", match: ["環境電器備註", "環境電器使用說明"] },
             { id: "out_custom", match: ["客製任務"] },
-            { id: "out_booking", match: ["本次預約方案與日期時間"] },
-            { id: "out_wifi", match: ["住家網路WiFi"] },
+            { id: "out_booking", match: ["預約方案與日期時間", "預約與方案"] },
+            { id: "out_wifi", match: ["住家網路WiFi", "WiFi"] },
             { id: "out_media_raw", match: ["影像授權意願"] }
         ];
 
@@ -193,25 +192,24 @@
             });
         });
 
-        // 依據出現順序排序
         foundPos.sort((a, b) => a.pos - b.pos);
 
-        // 3. 執行解析
+        // 3. 切片解析 (解決內容大搬家問題)
         let results = {};
         for (let i = 0; i < foundPos.length; i++) {
             let start = foundPos[i].pos + foundPos[i].len;
             let end = (i + 1 < foundPos.length) ? foundPos[i + 1].pos : txt.length;
             
             let val = txt.substring(start, end).trim();
-            // 去除多餘符號與鑰匙句號
+            // 掃除開頭冒號與結尾雜符
             val = val.replace(/^[:：\s\n\)\(）.]+/g, "").replace(/[。.]+$/g, "").trim();
             results[foundPos[i].id] = val;
             
             let el = document.getElementById(foundPos[i].id);
-            if (el) el.innerText = val || "（家長未填寫）";
+            if (el) el.innerText = val || "（未提供）";
         }
 
-        // 4. 右上角影像授權印章
+        // 4. 右上角精品印章 (偵測「可以」或「願意」)
         const badge = document.getElementById('media_badge_area');
         const mediaAns = results['out_media_raw'] || "";
         if (mediaAns.includes("可以") || mediaAns.includes("願意") || mediaAns.includes("同意")) {
