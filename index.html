@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V34.1</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V34.2</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#9B89B3">
@@ -50,11 +50,11 @@
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
         .wifi-capsule { background: rgba(255,255,255,0.15); display: inline-block; padding: 4px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 0.5px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 2.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
+        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 1.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
 
         .col-2 { grid-column: span 2; } .col-3 { grid-column: span 3; } .col-6 { grid-column: span 6; }
 
-        /* 卡片精品化：純白背景與褐金細線 */
+        /* 卡片精品化 */
         .card { background: #FFFFFF; padding: 15px; border-radius: 8px; border: 0.8px solid var(--brown-gold); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); }
         
         .card h3 { 
@@ -169,16 +169,16 @@
 </div>
 
 <script>
-    // 僅新增：控制自訂檔名匯出的列印函數
+    // 核心新增：控制自訂檔名匯出的列印函數
     function customPrint() {
         const fileNameInput = document.getElementById('pdfFileName').value.trim();
         const originalTitle = document.title;
         
         if (fileNameInput) {
-            document.title = fileNameInput; // 抽換成自訂檔名
+            document.title = fileNameInput;
         }
-        window.print(); // 喚起瀏覽器列印
-        document.title = originalTitle; // 瞬間還原優雅標題
+        window.print();
+        document.title = originalTitle;
     }
 
     function parseV33() {
@@ -214,7 +214,7 @@
                     /食盆數量.*/g, /水盆數量.*/g, /砂盆數量.*/g, /交付方式.*/g,
                     /小建議[：:].*補.*厚度.*/g, /毛孩是否可接受.*/g, /需要留哪些燈.*/g,
                     /如有需要協助.*/g, /如服務時間足夠.*/g, /• 生活照顧.*/g, /• 預約日期.*/g,
-                    /• 請問離家時間.*/g, /訊號差時.*/g, /請問是否同意.*/g, /包括但不限於.*/g,
+                    /• 請問離家時間.*/g, /訊號差時.*/g, /請問是否同意.*/g, /include.*/g, /包括但不限於.*/g,
                     /\*/g, /電子郵件/g, /切換帳戶/g, /在我的回覆中記錄以下電子郵件地址.*/g
                 ];
                 noises.forEach(n => { val = val.replace(n, ""); });
