@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V34.3</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V34.4</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#9B89B3">
@@ -50,7 +50,7 @@
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
         .wifi-capsule { background: rgba(255,255,255,0.15); display: inline-block; padding: 4px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 0.5px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 2.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
+        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 1.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
 
         .col-2 { grid-column: span 2; } .col-3 { grid-column: span 3; } .col-6 { grid-column: span 6; }
 
@@ -94,7 +94,7 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34.3 (純淨版) ɞ</h3>
+    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34.4 (純淨版) ɞ</h3>
     <textarea id="rawInput" placeholder="直接全選貼上 Google 表單回應內容..."></textarea>
     
     <div style="margin-top: 10px;">
@@ -116,7 +116,7 @@
             <div>
                 <b>家長的稱呼：<span id="out_client">解析中...</span></b><br>
                 <span style="font-size: 12px; opacity: 0.9;">毛孩溫馨的家：<span id="out_addr">解析中...</span></span><br>
-                <div class="wifi-capsule">📶 回報不不中斷 (WiFi)：<span id="out_wifi_disp">未提供</span></div>
+                <div class="wifi-capsule">📶 回報不中斷 (WiFi)：<span id="out_wifi_disp">未提供</span></div>
             </div>
         </div>
         <div id="media_badge_area" class="media-badge"></div>
@@ -169,20 +169,30 @@
 </div>
 
 <script>
-    // 修正核心：給予手機列印引擎 1.5 秒的緩衝時間去抓取自訂檔名，隨後才還原網頁標題
+    // 終極優化：完美取代定時器，採用雙重監聽還原機制
     function customPrint() {
         const fileNameInput = document.getElementById('pdfFileName').value.trim();
         const originalTitle = document.title;
         
         if (fileNameInput) {
-            document.title = fileNameInput;
+            document.title = fileNameInput; // 換上新檔名
         }
-        window.print();
         
-        // 延遲還原，解決手機非同步列印抓不到自訂檔名的 Bug
-        setTimeout(() => {
+        // 定義一個乾淨的還原函式
+        const restoreTitle = () => {
             document.title = originalTitle;
-        }, 1500);
+            window.removeEventListener('focus', restoreTitle); // 解除監聽，避免重複執行
+        };
+        
+        // 監聽一：當列印畫面結束，網頁重新獲得焦點時還原
+        window.addEventListener('focus', restoreTitle);
+        
+        // 監聽二：部分瀏覽器支援的列印後原生事件
+        if ('onafterprint' in window) {
+            window.onafterprint = restoreTitle;
+        }
+
+        window.print(); // 喚起列印
     }
 
     function parseV33() {
