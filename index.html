@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V34.1</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V34.2</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#9B89B3">
@@ -50,7 +50,7 @@
         .info-header .left-part { display: flex; align-items: center; gap: 20px; }
         .info-header img { width: 70px; height: 70px; object-fit: contain; }
         .wifi-capsule { background: rgba(255,255,255,0.15); display: inline-block; padding: 4px 12px; border-radius: 15px; margin-top: 5px; font-size: 11px; border: 0.5px solid rgba(255,255,255,0.3); }
-        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 1.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
+        .media-badge { background: white; color: var(--morandi-deep); padding: 8px 12px; border-radius: 10px; font-size: 11px; font-weight: bold; border: 2.5px solid var(--brown-gold); text-align: center; min-width: 140px; }
 
         .col-2 { grid-column: span 2; } .col-3 { grid-column: span 3; } .col-6 { grid-column: span 6; }
 
@@ -79,6 +79,8 @@
         .brand-footer { grid-column: span 6; text-align: center; padding: 15px 0; }
         .social-invite { color: var(--morandi-deep); font-size: 11px; margin-bottom: 15px; font-weight: 500; font-family: 'Zen Maru Gothic', sans-serif; }
         .qr-container { display: flex; justify-content: center; gap: 50px; }
+        .qr-container a { display: inline-block; transition: transform 0.2s; }
+        .qr-container a:hover { transform: scale(1.05); }
 
         @media print { 
             .input-box { display: none; } 
@@ -92,11 +94,16 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34.1 (純淨版) ɞ</h3>
+    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34.2 (純淨版) ɞ</h3>
     <textarea id="rawInput" placeholder="直接全選貼上 Google 表單回應內容..."></textarea>
+    
     <div style="margin-top: 10px;">
+        <input type="text" id="pdfFileName" placeholder="請輸入 PDF 匯出檔名（例：20260615_NONO家計畫書）" style="width: 85%; max-width: 420px; padding: 8px 15px; border: 1px solid #DDD; border-radius: 20px; font-size: 12px; outline: none; text-align: center; font-family: 'Noto Sans TC', sans-serif; color: var(--text-main);">
+    </div>
+    
+    <div style="margin-top: 8px;">
         <button onclick="parseV33()">✨ 生成精品計畫書</button>
-        <button onclick="window.print()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
+        <button onclick="customPrint()" style="background: #666; margin-left: 10px;">🖨️ 列印 A4 PDF</button>
     </div>
 </div>
 
@@ -150,14 +157,30 @@
         <div class="brand-footer">
             <div class="social-invite">歡迎追蹤ㄌㄌ，因為你家小朋友有可能會出現在鏡頭喲！</div>
             <div class="qr-container">
-                <img src="./ig.png" style="width: 65px; height: 65px; border-radius: 8px; border: 0.5px solid var(--brown-gold);">
-                <img src="./line.png" style="width: 65px; height: 65px; border-radius: 8px; border: 0.5px solid var(--brown-gold);">
+                <a href="https://www.instagram.com/the_pet_sitter_lili" target="_blank">
+                    <img src="./ig.png" style="width: 65px; height: 65px; border-radius: 8px; border: 0.5px solid var(--brown-gold);">
+                </a>
+                <a href="https://lin.ee/Sol7oXU" target="_blank">
+                    <img src="./line.png" style="width: 65px; height: 65px; border-radius: 8px; border: 0.5px solid var(--brown-gold);">
+                </a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    // 僅新增：控制自訂檔名匯出的列印函數
+    function customPrint() {
+        const fileNameInput = document.getElementById('pdfFileName').value.trim();
+        const originalTitle = document.title;
+        
+        if (fileNameInput) {
+            document.title = fileNameInput; // 抽換成自訂檔名
+        }
+        window.print(); // 喚起瀏覽器列印
+        document.title = originalTitle; // 瞬間還原優雅標題
+    }
+
     function parseV33() {
         let txt = document.getElementById('rawInput').value;
         if (!txt) return;
