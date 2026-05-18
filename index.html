@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ㄌㄌ保姆｜專業照護計畫書 V34.4</title>
+    <title>ㄌㄌ保姆｜專業照護計畫書 V34.5</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#9B89B3">
@@ -94,11 +94,12 @@
 <body>
 
 <div class="input-box">
-    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34.4 (純淨版) ɞ</h3>
+    <h3 style="color: var(--morandi-deep);">ʚ ㄌㄌ保姆｜專業照護計畫書生成器 V34.5 (純淨版) ɞ</h3>
     <textarea id="rawInput" placeholder="直接全選貼上 Google 表單回應內容..."></textarea>
     
-    <div style="margin-top: 10px;">
-        <input type="text" id="pdfFileName" placeholder="請輸入 PDF 匯出檔名（例：20260615_NONO家計畫書）" style="width: 85%; max-width: 420px; padding: 8px 15px; border: 1px solid #DDD; border-radius: 20px; font-size: 12px; outline: none; text-align: center; font-family: 'Noto Sans TC', sans-serif; color: var(--text-main);">
+    <div style="margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 8px;">
+        <input type="text" id="pdfFileName" placeholder="請輸入 PDF 匯出檔名（例：20260615_NONO家計畫書）" style="width: 70%; max-width: 350px; padding: 8px 15px; border: 1px solid #DDD; border-radius: 20px; font-size: 12px; outline: none; text-align: center; font-family: 'Noto Sans TC', sans-serif; color: var(--text-main);">
+        <button onclick="copyFileName()" style="background: var(--brown-gold); margin-top: 0; padding: 8px 18px; font-size: 11px;">📋 複製檔名</button>
     </div>
     
     <div style="margin-top: 8px;">
@@ -169,30 +170,30 @@
 </div>
 
 <script>
-    // 終極優化：完美取代定時器，採用雙重監聽還原機制
-    function customPrint() {
-        const fileNameInput = document.getElementById('pdfFileName').value.trim();
-        const originalTitle = document.title;
+    // 核心新增：一鍵複製檔名函數
+    function copyFileName() {
+        const nameInput = document.getElementById('pdfFileName');
+        const textToCopy = nameInput.value.trim();
         
-        if (fileNameInput) {
-            document.title = fileNameInput; // 換上新檔名
+        if (!textToCopy) {
+            alert('夥伴，請先在格子裡輸入妳想取的名字唷！');
+            return;
         }
         
-        // 定義一個乾淨的還原函式
-        const restoreTitle = () => {
-            document.title = originalTitle;
-            window.removeEventListener('focus', restoreTitle); // 解除監聽，避免重複執行
-        };
-        
-        // 監聽一：當列印畫面結束，網頁重新獲得焦點時還原
-        window.addEventListener('focus', restoreTitle);
-        
-        // 監聽二：部分瀏覽器支援的列印後原生事件
-        if ('onafterprint' in window) {
-            window.onafterprint = restoreTitle;
-        }
+        // 使用現代瀏覽器剪貼簿 API
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('✨ 檔名複製成功！等一下儲存 PDF 時長按貼上即可 ʚ♡ɞ');
+        }).catch(err => {
+            // 備用複製方案（防安全限制）
+            nameInput.select();
+            document.execCommand('copy');
+            alert('✨ 檔名複製成功！等一下儲存 PDF 時長按貼上即可 ʚ♡ɞ');
+        });
+    }
 
-        window.print(); // 喚起列印
+    // 回歸純粹：交由手機系統列印，不再搞萬分之一秒的時間差動作
+    function customPrint() {
+        window.print();
     }
 
     function parseV33() {
